@@ -53,6 +53,11 @@ copyright = "CSaratakij © {year}"
   [markup.goldmark.renderer]
       unsafe = true
 
+  [markup.tableOfContents]
+    endLevel = 3
+    ordered = false
+    startLevel = 2
+
 # Controls the navigation
 [[menu.main]]
   identifier = "about"
