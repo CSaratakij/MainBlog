@@ -6,18 +6,24 @@ tags: [Unity, NSC2018, Custom Editor]
 weight: 12
 draft: false
 ---
-[image here] \
+![Doppelganger](/dg-cover.png)
+
 game: https://csaratakij.itch.io/doppelganger \
 walkthrough: https://www.youtube.com/watch?v=t01DpSmG0PQ \
 respository: https://github.com/CSaratakij/DG-Script-Only \
-responsible: game system \
-other member: A (game designer), B (artist)
+responsible: game system
+
+other member: \
+[Nutthan Lekprasan](mailto:nutthanlekprasan@outlook.co.th) (game designer) \
+[Jetniphat Likhitwatthanasakun](mailto:jetniphatoat@gmail.com) (artist)
 
 ## Introduction
-Before you read any further, I have to warn you. There are some spoiler of the puzzle in this game. Please play the game first to avoid any spoiler.
+Before you read any further, I have to warn you. There are some __spoiler__ of the puzzle in this game. Please play the game first to avoid any spoiler.
 
 This game is the entry for __The Twentieth National Software Contest: NSC 2018__. We manage to get the __2nd runner up__ in ___"Program for entertainment"___ .
-We have only about 3 months to finish this project. \
+
+We have about 3 months to finish this project.
+
 Since I mainly do a game system and some of the game design, I will cover these topics with in depth. However, I will leave the art aspect to the 
 artist himself.
 
@@ -31,6 +37,8 @@ Most of the things in the game come from a first month we made doing a rappid pr
 But this is the entry for the contest, We cannot change our name mid-way due to the proposal we sent during the first round of the competition. So we kinda have to live with that.
 
 ## The origin of the "Focus" ability
+![focus ability](/dg-focus.png)
+
 Once we decide this is gonna be a 2d side scroller, I finish implementing the player controller shortly after that.
 But there is no core gameplay loop yet. So I have to experiment something quick.
 
@@ -57,10 +65,8 @@ But I have to keep exploring this deeper to see the other possibility, What cool
 
 One of the thing I remember experiment with was...
 
-"What if the world wrapping box place outside of the player and it isn't the thing that player can control and it just sit there in the level?" \
-[image here] \
-(short descriptiion of the image here...) \
-(Sorry, no cake for you)
+" What if the world wrapping box place outside of the player and it isn't the thing that player can control and it just sit there in the level? " \
+{{< figure src="/dg-no-cake.jpg" caption="(Sorry, no cake for you)" >}}
 
 There is other problem as well, the gating problem.
 
@@ -94,7 +100,7 @@ At the end, our entire month was gone. But we have a strong starting point and a
 This is the technical aspect of the project and it's really long.
 If you aren't interested in this topic, you can skip to [How we design a game pacing](#how-we-design-a-game-pacing) .
 ### Game System
-#### Player Controller (don't forget about one way collision, wall jump?, how it move during moving platform, push pull box)
+#### Player Controller (don't forget about one way collision, wall jump?, how it move during moving platform, push pull box, footstep)
 #### GamePad support (XInput)
 #### Camera Controller (Camera Trigger (avoid blind jump in platformer & cinematic cutscene trigger))
 #### World Wrapping Mechanic (Focus)(don't forget about the sprite mask, box effect by focus)
@@ -104,7 +110,6 @@ If you aren't interested in this topic, you can skip to [How we design a game pa
 #### Collectable
 #### Loading Screen
 #### Game Cinematic
-#### Sound Effect (Footstep)
 (explain about this section)
 ### Custom Editor
 (explain about this section)
