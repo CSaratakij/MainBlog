@@ -10,7 +10,8 @@ draft: false
 
 game: https://csaratakij.itch.io/doppelganger \
 walkthrough: https://www.youtube.com/watch?v=t01DpSmG0PQ \
-respository: https://github.com/CSaratakij/DG-Script-Only \
+respository: https://github.com/CSaratakij/DG-Script-Only
+
 responsible: game system
 
 other member: \
@@ -133,8 +134,7 @@ We re-arrange the order of each level if it necessary and take a note when playe
 
 Then we introduce the new ability or some shift in the game mechanic when player feels repetitive the most.
 
-This image is a rough approximate of how this game pacing works.
-[image here]
+{{< figure src="/dg-pacing.jpg" caption="(This image is a rough approximate of how this game pacing works)" >}}
 
 I strongly disagree about front-load tutorial, so the first two phase of the
 game was crafted with the extra care to make sure that I introduce player to the game properly.
