@@ -62,7 +62,7 @@ Then one of my team notice the similarity in the game that already publish.
 That game is [Four Sided Fantasy](https://store.steampowered.com/app/337490/Four_Sided_Fantasy/) (__Damn__...It's hard to be original these day).
 
 Actually, I don't mind if this game is similar to that game and I really like this mechanic.
-But I have to keep exploring this deeper to see the other possibility, What cools thing we can do if player have an ability to wrap themself?
+But I have to keep exploring this deeper to see the other possibility, What cools thing we can do, if player have an ability to wrap themself?
 
 One of the thing I remember experiment with was...
 
@@ -143,10 +143,16 @@ These are the tools I built to help reduce our development time. \
 We cannot hope to quickly iterate our levels and finish this project without these tools.
 
 #### Save ID Generator
+This is the tools
+
 #### Collision & Collider Plotter
+This is the tools
+
 #### Sprite Plotter
 This is the tools
+
 #### Scene Selector
+This is the tools
 
 ## How we design a game pacing
 (the overall design of phase and the chart of difficulty & the period of the phase)
@@ -172,6 +178,7 @@ game was crafted with the extra care to make sure that I introduce player to the
 (1. open space to the right guide player to moving to the right)
 (2. height wall to force player to press a longer jump)
 (3. Cat remind player to go to the right, make this a long term goal)
+
 ### Tutorial Phase
 (introduce to the main mechanic, the focus and make a box to open the
 door. keep occasionally remind player about how focus works and what the
@@ -179,6 +186,7 @@ limit it is, how spacing of the player impact how focus works)
 (1. Teach about box and remind about long jump)
 (2. Teach about focus)
 (3. Teach about the limit of the focus ability)
+
 ### Increase difficulty to the highest
 (throw more stuff to the player, introduce new ability along the way, make
 player do some timing required and throw the most difficulty puzzle to the
@@ -188,11 +196,17 @@ player in which player need to master this mechanic to solve it properly)
 (3. Box effect by focus)
 (4. Introduce the new ability (Edit mode))
 (5. Present with the highest difficulty)
+
 ### Slowly Decrease difficulty to the end
 (slowly decrease difficulty after the hardest difficulty puzzle, and
 sudden drop in difficulty as the player reach to the final level)
 (1. Box move along the moving platform)
 (2. mundane puzzle as the final level)
+
+(TODO)
+So, at the end....It turns out to be....
+Can be finish in 10 minutes, if you know how to solve its puzzle. \
+not too long and too short.
 
 ## Getting the most out of final round
 In the final round, we have only 10 days left to complete this project. \
