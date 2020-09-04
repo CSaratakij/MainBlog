@@ -70,7 +70,7 @@ One of the thing I remember experiment with was...
 
 There is other problem as well, the gating problem.
 
-Gating is how the game limit the player progression, in this case is how to prevent player to bypass our obstacle with ease.
+__Gating__ is how the game limit the player progression, in this case is how to prevent player to bypass our obstacle with ease.
 
 The normal obstacle in the 2d side scroller is the height of the wall. But the world wrapping mechanic is really an over power ability.
 It can bypass this type of obstacle easily and making it harder to design the game level around this.
@@ -166,7 +166,7 @@ sudden drop in difficulty as the player reach to the final level)
 (1. Box move along the moving platform)
 (2. mundane puzzle as the final level)
 
-## How we get the most out of our last 10 days
+## Getting the most out of final round
 In the final round, we have only 10 days left to complete this project. \
 So we decide to make the most out of it.
 
