@@ -67,7 +67,7 @@ But I have to keep exploring this deeper to see the other possibility, What cool
 One of the thing I remember experiment with was...
 
 " What if the world wrapping box place outside of the player and it isn't the thing that player can control and it just sit there in the level? " \
-{{< figure src="/dg-no-cake.jpg" caption="(Sorry, no cake for you)" >}}
+{{< figure src="/dg-no-cake.jpg" caption="( Sorry, no cake for you )" >}}
 
 There is other problem as well, the gating problem.
 
@@ -100,20 +100,48 @@ At the end, our entire month was gone. But we have a strong starting point and a
 ## Things that I implemented
 This is the technical aspect of the project and it's really long.
 If you aren't interested in this topic, you can skip to [How we design a game pacing](#how-we-design-a-game-pacing) .
+
 ### Game System
 #### Player Controller (don't forget about one way collision, wall jump?, how it move during moving platform, push pull box, footstep)
-#### GamePad support (XInput)
-#### Camera Controller (Camera Trigger (avoid blind jump in platformer & cinematic cutscene trigger))
+![player controller](/dg-player-controller.png)
+
+(jumping, physic based. Fighting with physics)
+
+(check ground by overlap circle) (avoid alloc every fix time step by pre-alloc)
+
+(wall jump, ray cast to check wall with the same direction of the player
+facing, allow player to jump up about 63 degree)
+
+(one way collision by unity itself)
+
+(push pull box, overlap box (trigger area) to check player). Move by set its velocity)
+
+(footstep by cast down to the ground, see if there is a ground tag and
+play sound effect appropiate)
+
+#### Camera System (Camera Trigger (avoid blind jump in platformer & cinematic cutscene trigger), game cinematic)
+__Game Cinematic:__(?)
+(explain about this section)
+
 #### World Wrapping Mechanic (Focus)(don't forget about the sprite mask, box effect by focus)
+(This one is the hardest to implement, took me sometime to figure out.)
+#### GamePad support (XInput)
 #### Game Progress
+
 #### Door & Switch
+![door and switch](/dg-door-and-switch.png)
+
 #### Moving Platform
 #### Collectable
 #### Loading Screen
-#### Game Cinematic
-(explain about this section)
+
 ### Custom Editor
-(explain about this section)
+Unity have a way to extend an editor to suit our project need. \
+We definitely take advantage of this.
+
+These are the tools I built to help reduce our development time. \
+We cannot hope to quickly iterate our levels and finish this project without these tools.
+
 #### Save ID Generator
 #### Collision & Collider Plotter
 #### Sprite Plotter
@@ -134,7 +162,7 @@ We re-arrange the order of each level if it necessary and take a note when playe
 
 Then we introduce the new ability or some shift in the game mechanic when player feels repetitive the most.
 
-{{< figure src="/dg-pacing.jpg" caption="(This image is a rough approximate of how this game pacing works)" >}}
+{{< figure src="/dg-pacing.jpg" caption="( This image is a rough approximate of how this game pacing works )" >}}
 
 I strongly disagree about front-load tutorial, so the first two phase of the
 game was crafted with the extra care to make sure that I introduce player to the game properly.
