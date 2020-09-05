@@ -186,28 +186,28 @@ Take a look at this example.
 
 As you can see, each of the sprite has its own box collider.
 
-The problem here is that, player will get stuck at some point if they try to walk on this type of the collider setup.
+The problem here is that, player will get stuck at some point when they try to walk on this type of the collider setup.
 
 Despite how it look, a bunch of smaller box collider cannot provide a seemless ground surface.
 
-(TODO) (explain how physics engine resolution order and floating point
-Physics engine will testing
-percision)
-(TODO) Also, there is a floating point precision come in to play here. \
+> As far as the physics engine concern, 
+> (TODO) (explain how physics engine resolution order )
 
-So the player might be able to walk in the right direction. \
+Physics engine will resolve
+
+So in the player perspective, the player might be able to walk in the right direction.
+
 But as soon as they start walking in the left direction, their character might get stuck.
 
-The ideas box collider setup would be a big box collider to ensure the
-seemless surface.
+The ideas box collider setup would be a big box collider to make physics engine resolve collision correctly.
 
 ![one big box collider](/dg-sprite-one-big-collision.png)
 
-The box collider size also adjust to the sprite size when you add its component to the sprite as well.
+The box collider size also adjust to the same sprite size when you add its component to the sprite itself.
 
 So we have to seperate the collider from the sprite by making a new game object with the box collider.
 
-But placing this kind of box collider with an existing Unity tools is really time consuming.
+Placing this ideas box collider with an existing Unity tools is really time consuming.
 
 Not only we have to keep our box collider size right, we have to place this in the proper distance (make it snap to the grid).
 
