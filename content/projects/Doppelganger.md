@@ -135,6 +135,13 @@ __Game Cinematic:__(?)
 #### Moving Platform
 #### Collectable
 #### Loading Screen
+#### Game UI
+(TODO) 
+Unity Canvas do the jobs nicely
+
+(TODO) 
+I avoid Unity Event and its messaging system since it's slower than manually binding a native C# event.
+( Even though it's less convenient to setup )
 
 ### Custom Editor
 Unity have a way to extend an editor to suit our project need. \
@@ -148,10 +155,10 @@ We cannot hope to quickly iterate our levels and finish this project without the
 
 This tools help ensuring our checkpoint will have a unique ID.
 
-Because we iterate a lot of levels over a short period of time, we keep adding, changing its location and removing the
+Because we iterate a lot of levels in a short period of time, we keep adding, changing its location and removing the
 checkpoint overtime.
 
-Without this tools, we have to keep checking every checkpoint we place manually to make sure its ID will not conflict with each other.
+Without this tools, we have to keep checking every checkpoint we place manually to make sure its ID will not conflict with each other. \
 (Which is really the time consuming process)
 
 With this tools, we can check and re-generate every checkpoint ID in one click. This help ensuring our save and load system to work properly.
@@ -167,12 +174,60 @@ to save the scene. (I learn this the hard way...)
 You can view the implementation [here](https://github.com/CSaratakij/DG-Script-Only/blob/develop/Assets/Editor/SaveSetting.cs) .
 
 #### Collision & Collider Plotter
-This is the tools. \
-you can view the implementation [here](https://github.com/CSaratakij/DG-Script-Only/blob/develop/Assets/Editor/Plotter/CollisionPlotter.cs) .
+![collision plotter](/dg-collision-plotter.png)
+
+This tools help us place and delete our collision and collider quickly with ease.
+
+We need this tools because of the problem about the way Unity resolve its collision.
+
+Take a look at this example.
+
+![sprite have its own collision](/dg-sprite-each-collision.png)
+
+As you can see, each of the sprite has its own box collider.
+
+The problem here is that, player will get stuck at some point if they try to walk on this type of the collider setup.
+
+Despite how it look, a bunch of smaller box collider cannot provide a seemless ground surface.
+
+(TODO) (explain how physics engine resolution order and floating point
+Physics engine will testing
+percision)
+(TODO) Also, there is a floating point precision come in to play here. \
+
+So the player might be able to walk in the right direction. \
+But as soon as they start walking in the left direction, their character might get stuck.
+
+The ideas box collider setup would be a big box collider to ensure the
+seemless surface.
+
+![one big box collider](/dg-sprite-one-big-collision.png)
+
+The box collider size also adjust to the sprite size when you add its component to the sprite as well.
+
+So we have to seperate the collider from the sprite by making a new game object with the box collider.
+
+But placing this kind of box collider with an existing Unity tools is really time consuming.
+
+Not only we have to keep our box collider size right, we have to place this in the proper distance (make it snap to the grid).
+
+The way I do this is using the fact that I can construct a rectangle by using only two points.
+[image about two point the construct rectangle here]
+
+[image about drawing here]
+[image when in delete mode here]
+
+As for the grid, I don't have to re-draw it since we use a Unity default scene view grid.
+
+This tools also help us placing the necessary collider to represent the ground material to help playing the right sound of player footstep.
+
+You can view the implementation [here](https://github.com/CSaratakij/DG-Script-Only/blob/develop/Assets/Editor/Plotter/CollisionPlotter.cs) .
 
 #### Sprite Plotter
 This is the tools \
-you can view the implementation [here](https://github.com/CSaratakij/DG-Script-Only/blob/develop/Assets/Editor/Plotter/SpritePlotter.cs) .
+(todo) The placing sprite logic is similar to the Collision & Collider Plotter.
+
+You can view the implementation [here](https://github.com/CSaratakij/DG-Script-Only/blob/develop/Assets/Editor/Plotter/SpritePlotter.cs) .
 
 #### Scene Selector
 This is the tools \
