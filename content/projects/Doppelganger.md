@@ -21,7 +21,8 @@ other member: \
 ## Introduction
 Before you read any further, I have to warn you. There are some __spoiler__ of the puzzle in this game. Please play the game first to avoid any spoiler.
 
-This game is the entry for __The Twentieth National Software Contest: NSC 2018__. We manage to get the __2nd runner up__ in ___"Program for entertainment"___ .
+This game is the entry for __The Twentieth National Software Contest: NSC 2018__.
+We manage to get the __2nd runner up__ in ___"Program for entertainment"___ .
 
 We have about 3 months to finish this project.
 
@@ -46,7 +47,7 @@ But there is no core gameplay loop yet. So I have to experiment something quick.
 During that time, I saw a game that playing with a clone of player concept like our early idea.
 I don't remember the exact name of this game, but the mechanic is very similar to __"Binary Land"__.
 
-That is when I realized, I actually didn't think about this enough. So I start looking for the inspiration in [itch.io](https://itch.io).
+That's when I realized, I actually didn't think about this enough. So I start looking for the inspiration in [itch.io](https://itch.io).
 
 After playing a bunch of weird game, One of the idea come up to my mind.
 
@@ -143,16 +144,39 @@ These are the tools I built to help reduce our development time. \
 We cannot hope to quickly iterate our levels and finish this project without these tools.
 
 #### Save ID Generator
-This is the tools
+![save id generator](/dg-save-id-generator.png)
+
+This tools help ensuring our checkpoint will have a unique ID.
+
+Because we iterate a lot of levels over a short period of time, we keep adding, changing its location and removing the
+checkpoint overtime.
+
+Without this tools, we have to keep checking every checkpoint we place manually to make sure its ID will not conflict with each other.
+(Which is really the time consuming process)
+
+With this tools, we can check and re-generate every checkpoint ID in one click. This help ensuring our save and load system to work properly.
+
+One of the problem I came across is how to make Unity save the
+change we made programmatically.
+
+To make this tools work, I have to push our change to the Unity undo stack.
+
+Once our change has pushed, It will set the Unity scene dirty and allow us
+to save the scene. (I learn this the hard way...)
+
+You can view the implementation [here](https://github.com/CSaratakij/DG-Script-Only/blob/develop/Assets/Editor/SaveSetting.cs) .
 
 #### Collision & Collider Plotter
-This is the tools
+This is the tools. \
+you can view the implementation [here](https://github.com/CSaratakij/DG-Script-Only/blob/develop/Assets/Editor/Plotter/CollisionPlotter.cs) .
 
 #### Sprite Plotter
-This is the tools
+This is the tools \
+you can view the implementation [here](https://github.com/CSaratakij/DG-Script-Only/blob/develop/Assets/Editor/Plotter/SpritePlotter.cs) .
 
 #### Scene Selector
-This is the tools
+This is the tools \
+you can view the implementation [here](https://github.com/CSaratakij/SceneSelector) .
 
 ## How we design a game pacing
 (the overall design of phase and the chart of difficulty & the period of the phase)
