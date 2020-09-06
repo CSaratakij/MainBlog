@@ -188,12 +188,25 @@ As you can see, each of the sprite has its own box collider.
 
 The problem here is that, player will get stuck at some point when they try to walk on this type of the collider setup.
 
+![player stuck](/dg-player-stuck-sample.png)
+
 Despite how it look, a bunch of smaller box collider cannot provide a seemless ground surface.
 
 > As far as the physics engine concern, 
 > (TODO) (explain how physics engine resolution order )
 
-Physics engine will resolve
+(TODO) Physics engine will resolve... \
+(Don't forget to tell about physics engine will resolve each fixed update
+cycle)
+There are two possibility at the moment player reach to the next collider.
+
+__Vertical Push__
+
+![vertical push](/dg-push-to-vertical-arrow.png)
+
+__Horizontal Push__
+
+![horizontal push](/dg-push-to-horizontal-arrow.png)
 
 So in the player perspective, the player might be able to walk in the right direction.
 
