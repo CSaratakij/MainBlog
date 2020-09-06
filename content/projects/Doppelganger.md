@@ -230,10 +230,10 @@ Not only we have to keep our box collider size right, we have to place this in t
 The way I do this is using the fact that I can construct a rectangle by using only two points.
 ![construct rectangle by two points](/dg-A-B.png)
 
-[image about drawing here]
-[image when in delete mode here]
+And the grid itself is just the default Unity scene view grid.
 
-As for the grid, I don't have to re-draw it since we use a Unity default scene view grid.
+<br/>
+{{< youtube id="5gCgzt1DCqA" >}}
 
 This tools also help us placing the necessary collider to represent the ground material to help playing the right sound of player footstep.
 
