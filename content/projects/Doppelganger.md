@@ -223,14 +223,12 @@ But, the box collider size also adjust to the same size of the sprite when you a
 
 So we have to seperate the collider from the sprite by making an empty game object attached with the box collider component.
 
-![empty game object with box collider component]()
-
 Placing this ideas box collider with an existing Unity tools is really time consuming.
 
 Not only we have to keep our box collider size right, we have to place this in the proper distance (make it snap to the grid).
 
 The way I do this is using the fact that I can construct a rectangle by using only two points.
-[image about two point the construct rectangle here]
+![construct rectangle by two points](/dg-A-B.png)
 
 [image about drawing here]
 [image when in delete mode here]
