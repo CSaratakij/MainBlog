@@ -159,9 +159,9 @@ Because we iterate a lot of levels in a short period of time, we keep adding, ch
 checkpoint overtime.
 
 Without this tools, we have to keep checking every checkpoint we place manually to make sure its ID will not conflict with each other. \
-(Which is really the time consuming process)
+(Which is really time consuming process)
 
-With this tools, we can check and re-generate every checkpoint ID in one click. This help ensuring our save and load system to work properly.
+With this tools, we can check and re-generate every checkpoint ID in one click. This help ensuring our save and load system working properly.
 
 One of the problem I came across is how to make Unity save the
 change we made programmatically.
@@ -240,12 +240,16 @@ This tools also help us placing the necessary collider to represent the ground m
 You can view the implementation [here](https://github.com/CSaratakij/DG-Script-Only/blob/develop/Assets/Editor/Plotter/CollisionPlotter.cs) .
 
 #### Sprite Plotter
-This is the tools \
-(todo) The placing sprite logic is similar to the Collision & Collider Plotter.
+![sprite plotter](/dg-sprite-plotter.png)
+
+This tools help our artist to place the tilesets.
+(todo)The placing sprite logic is similar to the Collision & Collider Plotter.
 
 You can view the implementation [here](https://github.com/CSaratakij/DG-Script-Only/blob/develop/Assets/Editor/Plotter/SpritePlotter.cs) .
 
 #### Scene Selector
+![scene selector](/dg-scene-selector.png)
+
 This is the tools \
 you can view the implementation [here](https://github.com/CSaratakij/SceneSelector) .
 
