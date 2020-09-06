@@ -176,7 +176,7 @@ You can view the implementation [here](https://github.com/CSaratakij/DG-Script-O
 #### Collision & Collider Plotter
 ![collision plotter](/dg-collision-plotter.png)
 
-This tools help us place and delete our collision and collider quickly with ease.
+This tools help us create and delete our collision and collider quickly with ease.
 
 We need this tools because of the problem about the way Unity resolve its collision.
 
@@ -188,37 +188,42 @@ As you can see, each of the sprite has its own box collider.
 
 The problem here is that, player will get stuck at some point when they try to walk on this type of the collider setup.
 
-![player stuck](/dg-player-stuck-sample.png)
-
 Despite how it look, a bunch of smaller box collider cannot provide a seemless ground surface.
 
-> As far as the physics engine concern, 
-> (TODO) (explain how physics engine resolution order )
+Physics engine try to push away each pair of the collider when it detects the collision in each fixed update to prevent them from overlap to each other.
 
-(TODO) Physics engine will resolve... \
-(Don't forget to tell about physics engine will resolve each fixed update
-cycle)
-There are two possibility at the moment player reach to the next collider.
+![player stuck](/dg-player-stuck-sample.png)
+
+To keep things simple, let assume there are the two possibilities at the moment player collider overlap to the edge of the ground collider.
 
 __Vertical Push__
 
 ![vertical push](/dg-push-to-vertical-arrow.png)
 
+As you can see, the length of overlapping in the horizontal axis is greater than the vertical axis.
+
+So, the quickest way to push each collider away from each other is by pushing them vertically.
+
+
 __Horizontal Push__
 
 ![horizontal push](/dg-push-to-horizontal-arrow.png)
 
-So in the player perspective, the player might be able to walk in the right direction.
+In this case, pushing each collider pair horizontally would be the quickest way to resolve this collision.
 
-But as soon as they start walking in the left direction, their character might get stuck.
+But this also the cause of the player getting stuck, because player keep getting push back to the opposite way of the way they want their character to be move.
+
+For example, player might be able to walk in the right direction. But as soon as they start walking in the left direction, their character might get stuck.
 
 The ideas box collider setup would be a big box collider to make physics engine resolve collision correctly.
 
 ![one big box collider](/dg-sprite-one-big-collision.png)
 
-The box collider size also adjust to the same sprite size when you add its component to the sprite itself.
+But, the box collider size also adjust to the same size of the sprite when you add its component to the sprite itself.
 
-So we have to seperate the collider from the sprite by making a new game object with the box collider.
+So we have to seperate the collider from the sprite by making an empty game object attached with the box collider component.
+
+![empty game object with box collider component]()
 
 Placing this ideas box collider with an existing Unity tools is really time consuming.
 
