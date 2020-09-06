@@ -242,8 +242,30 @@ You can view the implementation [here](https://github.com/CSaratakij/DG-Script-O
 #### Sprite Plotter
 ![sprite plotter](/dg-sprite-plotter.png)
 
-This tools help our artist to place the tilesets.
-(todo)The placing sprite logic is similar to the Collision & Collider Plotter.
+This tools help our artist to quickly place the tilesets.
+
+Since we use a pixel art style for this game, We need to make sure each sprite will align properly within the grid.
+
+At that time, Unity already have a tools to help place the tilesets. \
+Unfortunately, We don't want to use its solution.
+
+Not only it techically still in the beta, but also the work we have to do in order to prepare our sprite is way too complicated for our usecase.
+
+( We just want to snap our sprite to the grid, for god sake... )
+
+That's why this tools was created. \
+The placing sprite logic is similar to the Collision & Collider Plotter.
+
+(TODO)
+> Later on, I add (brush profile)
+> This is possible by the fact that assets need to generate its own GUID when import to the project. 
+> GUID is a unique ID
+
+(TODO)
+> One issue that come up with 
+> (Multiple Sprite, too costly when use single gameobject for multiple sprite with the same sprite)
+
+[video when using here..]
 
 You can view the implementation [here](https://github.com/CSaratakij/DG-Script-Only/blob/develop/Assets/Editor/Plotter/SpritePlotter.cs) .
 
