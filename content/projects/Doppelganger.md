@@ -297,7 +297,7 @@ If I want to start playing from the "Introduction" scene, I have to close
 the "Level5" scene first and then have to manually open the "Introduction" scene before entering the play mode.
 
 Which make me frustrated overtime. \
-So, this tools keeping me sane while repeatly play testing.
+So, this tools keeping me sane while play testing dozen times.
 
 <br/>
 {{< youtube id="PaeOfl0nNyM" >}}
@@ -305,7 +305,7 @@ So, this tools keeping me sane while repeatly play testing.
 You can view the implementation [here](https://github.com/CSaratakij/SceneSelector) .
 
 ## How we design a game pacing
-(the overall design of phase and the chart of difficulty & the period of the phase)
+(todo)(the overall design of phase and the chart of difficulty & the period of the phase)
 (don't forget to warn about spoiler alert in our game pacing design, how you teach player on spot of how focus works and how box puzzle works)
 (how you teach player to grab & push box)
 
