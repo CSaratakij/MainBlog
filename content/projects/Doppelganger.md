@@ -8,6 +8,8 @@ draft: false
 ---
 ![Doppelganger](/dg-cover.png)
 
+[a short description of what this project is about here]
+
 game: https://csaratakij.itch.io/doppelganger \
 walkthrough: https://www.youtube.com/watch?v=t01DpSmG0PQ \
 respository: https://github.com/CSaratakij/DG-Script-Only
@@ -249,24 +251,29 @@ Since we use a pixel art style for this game, We need to make sure each sprite w
 At that time, Unity already have a tools to help place the tilesets. \
 Unfortunately, We don't want to use its solution.
 
-Not only it techically still in the beta, but also the work we have to do in order to prepare our sprite is way too complicated for our usecase.
+Not only it techically still in the beta, but also the amount of work we have to do in order to prepare our sprite is way too much for our use case.
 
 ( We just want to snap our sprite to the grid, for god sake... )
 
 That's why this tools was created. \
-The placing sprite logic is similar to the Collision & Collider Plotter.
+The placing sprite logic is similar to the __Collision & Collider
+Plotter__.
 
-(TODO)
-> Later on, I add (brush profile)
-> This is possible by the fact that assets need to generate its own GUID when import to the project. 
-> GUID is a unique ID
+One issue I have to deal is to prevent too much waste in game object when placing the multiple sprites that use the same texture.
 
-(TODO)
-> One issue that come up with 
-> (Multiple Sprite, too costly when use single gameobject for multiple sprite with the same sprite)
+Lucky for me, I can change the sprite draw mode to tile to make texture repeat itself to fit the size of the sprite.
 
-[video when using here..]
+This help us reduce game object count to just one per multiple sprites.
 
+<br/>
+{{< youtube id="f7WA2ed93RI" >}}
+
+Later on, I add the brush profile to help group our tilesets together.
+Make it easier for the artist to choose the tilesets.
+
+This is possible by the fact that the assets need to generate its own Global Unique Identifier (GUID) when import to the project. 
+
+So, I just need to retreive its asset guid then save it in the [JSON](https://github.com/CSaratakij/DG-Script-Only/blob/develop/Assets/Editor/Plotter/Profile/dg_grid_preset.json) format. \
 You can view the implementation [here](https://github.com/CSaratakij/DG-Script-Only/blob/develop/Assets/Editor/Plotter/SpritePlotter.cs) .
 
 #### Scene Selector
