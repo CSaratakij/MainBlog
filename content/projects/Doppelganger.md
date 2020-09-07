@@ -279,8 +279,30 @@ You can view the implementation [here](https://github.com/CSaratakij/DG-Script-O
 #### Scene Selector
 ![scene selector](/dg-scene-selector.png)
 
-This is the tools \
-you can view the implementation [here](https://github.com/CSaratakij/SceneSelector) .
+This tools help us play testing the game from the start without having to leave the current scene in the editor.
+
+This feature is what I wish to be built in to the Unity Editor. \
+But sadly, it's not...
+
+So, I have to implement this myself.
+
+Let's assume I set the scene name "Introduction" as the first scene in the build setting.
+
+But I open the scene name "Level5" in the editor.
+
+If I hit "Play" button in the editor, Unity by default will play a current scene.
+In this case, It's a "Level5" scene.
+
+If I want to start playing from the "Introduction" scene, I have to close
+the "Level5" scene first and then have to manually open the "Introduction" scene before entering the play mode.
+
+Which make me frustrated overtime. \
+So, this tools keeping me sane while repeatly play testing.
+
+<br/>
+{{< youtube id="PaeOfl0nNyM" >}}
+
+You can view the implementation [here](https://github.com/CSaratakij/SceneSelector) .
 
 ## How we design a game pacing
 (the overall design of phase and the chart of difficulty & the period of the phase)
