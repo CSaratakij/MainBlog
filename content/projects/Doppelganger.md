@@ -325,6 +325,16 @@ game was crafted with the extra care to make sure that I introduce player to the
 
 ### Beginning Phase
 (familar with the input & how the player controller works)
+![beginning-0](/dg-0.png)
+
+![beginning-1](/dg-1.png)
+
+![beginning-2](/dg-2.png)
+
+![beginning-10](/dg-10.png)
+
+![beginning-11](/dg-11.png)
+
 (1. open space to the right guide player to moving to the right)
 (2. height wall to force player to press a longer jump)
 (3. Cat remind player to go to the right, make this a long term goal)
@@ -333,6 +343,17 @@ game was crafted with the extra care to make sure that I introduce player to the
 (introduce to the main mechanic, the focus and make a box to open the
 door. keep occasionally remind player about how focus works and what the
 limit it is, how spacing of the player impact how focus works)
+
+![beginning-3](/dg-3.png)
+
+![beginning-4](/dg-4.png)
+
+![beginning-5](/dg-5.png)
+
+![beginning-6](/dg-6.png)
+
+![beginning-7](/dg-7.png)
+
 (1. Teach about box and remind about long jump)
 (2. Teach about focus)
 (3. Teach about the limit of the focus ability)
@@ -341,6 +362,11 @@ limit it is, how spacing of the player impact how focus works)
 (throw more stuff to the player, introduce new ability along the way, make
 player do some timing required and throw the most difficulty puzzle to the
 player in which player need to master this mechanic to solve it properly)
+
+![beginning-8](/dg-8.png)
+
+![beginning-9](/dg-9.png)
+
 (1. Make player play with a timing)
 (2. Introduce the new ability (Move mode))
 (3. Box effect by focus)
@@ -380,6 +406,8 @@ And you have to remove the task from this section if you stop or finish
 the task.
 
 __Done:__ is for the complete task.
+
+(todo): don't forget to explain about 'urgent' tag
 
 With this board, we can finish most of the necessary task. \
 You can view the board [here](https://trello.com/b/hVPRrx2p/dg-frame) .
