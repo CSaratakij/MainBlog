@@ -324,65 +324,95 @@ I strongly disagree about front-load tutorial, so the first two phase of the
 game was crafted with the extra care to make sure that I introduce player to the game properly.
 
 ### Beginning Phase
-(familar with the input & how the player controller works)
+The main goals of this phase is to make player familar with how to control their character.
+No mind bending stuff or fancy mechanic would get introduce yet.
+
+At first, I place the level in such a way that player will know exactly which way to proceed. (Just keep going right)
+
 ![beginning-0](/dg-0.png)
+
+Then I make player warm up their jump by introduce a little platform.
 
 ![beginning-1](/dg-1.png)
 
-![beginning-2](/dg-2.png)
-
-![beginning-10](/dg-10.png)
+Then, the game will play a tiny cutscene to remind player about going to the right.
 
 ![beginning-11](/dg-11.png)
 
-(1. open space to the right guide player to moving to the right)
-(2. height wall to force player to press a longer jump)
-(3. Cat remind player to go to the right, make this a long term goal)
+Finally, make sure that player know about the high jump (hold a jump button) by placing a taller wall as an obstacle in which player need a box to support the height.
+
+So, this introduce player about how to push and pull a box in the process.
+
+![beginning-2](/dg-2.png)
 
 ### Tutorial Phase
-(introduce to the main mechanic, the focus and make a box to open the
-door. keep occasionally remind player about how focus works and what the
-limit it is, how spacing of the player impact how focus works)
+This phase is to make player understand the basic principle of the main
+mechanic. Especially, the focus ability.
 
-![beginning-3](/dg-3.png)
+This phase also explain the limit of the focus ability as well.
 
-![beginning-4](/dg-4.png)
+At first, I throw player in the situation where they need to use the focus
+ability in order to proceed.
 
-![beginning-5](/dg-5.png)
+Not only it help player to understand what it capable of, but also how to use it to solve their problem as well.
 
-![beginning-6](/dg-6.png)
+![tutorial-0](/dg-3.png)
 
-![beginning-7](/dg-7.png)
+After that, I introduce its limitation right away. Player need to think
+a little bit in order to proceed.
 
-(1. Teach about box and remind about long jump)
-(2. Teach about focus)
-(3. Teach about the limit of the focus ability)
+![tutorial-1](/dg-4.png)
+
+Then, I teach player about how pressure switch works with a door.
+
+![tutorial-2](/dg-5.png)
+
+If player use the focus ability, it will wrap them back exactly at the top
+of the switch. Introduce the pressure switch and how it work in the
+process.
+
+So, player will start to think about how useful the box would be.
+
+![tutorial-3](/dg-6.png)
+
+Later on, I occasionally remind player about how focus ability work.
+And introduce other limitation of the focus ability.
+
+In this case, It's about the position of the character when start using the focus ability is matter.
+
+![tutorial-4](/dg-7.png)
 
 ### Increase difficulty to the highest
-(throw more stuff to the player, introduce new ability along the way, make
-player do some timing required and throw the most difficulty puzzle to the
-player in which player need to master this mechanic to solve it properly)
+After a lot of simple puzzle to solve that didn't involve the player
+timing at all in the tutorial phase, things starting to shift.
 
-![beginning-8](/dg-8.png)
+At first is to play with the player timing, they need to use and disable
+the focus ability at the right time in order to proceed.
 
-![beginning-9](/dg-9.png)
+Then things will slowly getting harder and weirder, slowly increasing the
+difficulty to the highest possible.
 
-(1. Make player play with a timing)
-(2. Introduce the new ability (Move mode))
-(3. Box effect by focus)
-(4. Introduce the new ability (Edit mode))
-(5. Present with the highest difficulty)
+![difficulty-0](/dg-8.png)
+
+And it keep getting harder and harder until the most challenge puzzle in the game.
+
+![difficulty-1](/dg-9.png)
 
 ### Slowly Decrease difficulty to the end
-(slowly decrease difficulty after the hardest difficulty puzzle, and
-sudden drop in difficulty as the player reach to the final level)
-(1. Box move along the moving platform)
-(2. mundane puzzle as the final level)
+After the most challenge puzzle, things will slowly decrease in the difficulty.
 
-(TODO)
-So, at the end....It turns out to be....
-Can be finish in 10 minutes, if you know how to solve its puzzle. \
-not too long and too short.
+But the time player took from the most challenge puzzle to the final level
+is not long enough and player need more time to cool their head after
+those challenge.
+
+So, I decide to just suddenly drop in difficulty in the final level.
+Because in the player mind, they just got enough of the puzzle at this point.
+
+In the end, it's coming together nicely.
+
+The game took about 10 minutes to finish if player know how to solve those puzzle.
+
+Not too long and not too short for the game session.
 
 ## Getting the most out of final round
 In the final round, we have only 10 days left to complete this project. \
@@ -407,7 +437,7 @@ the task.
 
 __Done:__ is for the complete task.
 
-(todo): don't forget to explain about 'urgent' tag
+And the top piorities tasks will be tag with a label __"urgent"__.
 
 With this board, we can finish most of the necessary task. \
 You can view the board [here](https://trello.com/b/hVPRrx2p/dg-frame) .
