@@ -105,7 +105,7 @@ This is the technical aspect of the project and it's really long.
 If you aren't interested in this topic, you can skip to [How we design a game pacing](#how-we-design-a-game-pacing) .
 
 ### Game System
-#### Player Controller (don't forget about one way collision, wall jump?, how it move during moving platform, push pull box, footstep)
+#### Player Controller
 ![player controller](/dg-player-controller.png)
 
 This is the first thing I finished implementing.
@@ -139,7 +139,7 @@ platformer genere.
 They need to nail this stuff, because in Celeste there are a ton of
 platform session that require a percise jump from the player.
 
-This is not possible if you based this around a physics engine.
+This is not possible if you based it around a physics engine.
 
 Lucky for me, this game is not really having a lot of the platform session
 and it didn't require a percise jump.
@@ -154,42 +154,76 @@ If I have a chance to remake this game, This will be the first thing I want to r
 
 Now, let's talk about the implementation detail of player controller.
 
-> (todo) technical aspect of how each things works
-> (jumping, physic based. Fighting with physics)
-
 __Walking__
 
-(footstep by cast down to the ground, see if there is a ground tag and
-play sound effect appropiate)
+Nothing fancy here.
 
-(during stay on top of the platform here)
+Just get the move direction from the input and move its character according to its move speed.
+
+Since I use the physics engine, I need to add a physics material and low
+the friction value to 0 to prevent its collider from getting stuck when character is in the air while bumping to the wall.
+
+The footstep sound effect will play while character moving around, and its sound effect will pick based on the game object tag that found by a simple raycast.
+
+As for the movement when staying on top of the platform, I translate character with the same velocity as the platform itself whenever
+player found a platform by overlap testing around the feet of the character.
 
 __Jumping__
 
-(check ground by overlap circle) (avoid alloc every fix time step by pre-alloc)
-One issue is to avoid unnecessary allocation at every fixed update cycle.
+(todo) how high & low jump works here
+
+There are low and high jump in this game.
+
+This is possible by manipulate a gravity based on the way player press
+their jump button.
+
+
+
+![jump curve](/dg-jump-curve.jpg)
+
+As for the ground detection, I use overlap testing instead of the multiple
+raycast.
+
+The issue that come with this is I have to avoid unnecessary allocation at every fixed update cycle.
 
 Because, I don't want a Garbage Collector (GC) to kick in cleaning the
-stuff during gameplay making it look like a random freeze spike in the player perspective.
+stuff during gameplay making it look like a random freeze (spike) in the player perspective.
 
 So, I have to pre-allocate, make a buffer and change the overlap testing method to the stuff that support a buffer.
 
-(wall jump, ray cast to check wall with the same direction of the player
-facing, allow player to jump up about 63 degree)
+The wall jumping mechanic is using a ray cast around a character feet to check if there is a wall at the same direction that player is currently
+facing.
 
-(one way collision by unity itself)
+If it successfully detect the wall, player will get the additional jump at about 63 degree up.
+
+One way collision is using a built in Unity solution.
 
 __Push & Pull box__
+
+![push and pull box](/dg-box-pull-push.png)
 
 (push pull box, overlap box (trigger area) to check player). Move by set its velocity)
 
 #### Camera System (Camera Trigger (avoid blind jump in platformer & cinematic cutscene trigger), game cinematic)
+
+(todo) A blue rectangle draw by Unity Gizmos.
+
+![camera offset trigger](/dg-camera-offset-trigger.png)
+
 __Game Cinematic:__(?)
 (explain about this section)
 
 #### World Wrapping Mechanic (Focus)(don't forget about the sprite mask, box effect by focus)
 (This one is the hardest to implement, took me sometime to figure out.)
-#### GamePad support (XInput)
+
+__Normal Mode__
+
+__Move Mode__
+
+__Edit Mode__
+
+#### GamePad support
+
 #### Game Progress
 
 #### Door & Switch
@@ -455,6 +489,8 @@ the focus ability at the right time in order to proceed.
 
 Then things will slowly getting harder and weirder, slowly increasing the
 difficulty to the highest possible.
+
+Give player some new abilities to play along the way to keep the game fresh.
 
 ![difficulty-0](/dg-8.png)
 
