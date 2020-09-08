@@ -6,9 +6,9 @@ tags: [Unity, NSC2018, Custom Editor]
 weight: 12
 draft: false
 ---
-![Doppelganger](/dg-cover.png)
+The puzzle platformer with a twist. Player can use a “Focus” power, the ability to bend a dimension to overcome the obstacle. (2nd runner up in NSC2018)
 
-[a short description of what this project is about here]
+![Doppelganger](/dg-cover.png)
 
 game: https://csaratakij.itch.io/doppelganger \
 walkthrough: https://www.youtube.com/watch?v=t01DpSmG0PQ \
@@ -26,7 +26,7 @@ Before you read any further, I have to warn you. There are some __spoiler__ of t
 This game is the entry for __The Twentieth National Software Contest: NSC 2018__.
 We manage to get the __2nd runner up__ in ___"Program for entertainment"___ .
 
-We have about 3 months to finish this project.
+We have about __3 months__ to finish this project.
 
 Since I mainly do a game system and some of the game design, I will cover these topics with in depth. However, I will leave the art aspect to the 
 artist himself.
@@ -108,19 +108,80 @@ If you aren't interested in this topic, you can skip to [How we design a game pa
 #### Player Controller (don't forget about one way collision, wall jump?, how it move during moving platform, push pull box, footstep)
 ![player controller](/dg-player-controller.png)
 
-(jumping, physic based. Fighting with physics)
+This is the first thing I finished implementing.
+
+Without knowing what the game is gonna look like at first, I took an
+easiest way possible to approach this by making it based on the physics engine.
+
+In which you can call this a __"Physics based platformer"__.
+
+As the result, I have to fight the physics engine because in reallity the character wasn't behave
+in the way the normal physics would behave as the physics engine estimate.
+
+The better ways to do the platformer in general is to not rely on the
+physics engine and roll your own based on the specific need of your current project.
+
+All the physics based platformer suffer from the floatlyness in which is
+the feeling of not in control of the character.
+
+Making the tight platformer controls by based around the physics engine is
+just a brute force process of tweaking a multiple parameters of the physics engine to get the result closest to what you want.
+
+There is still a cost to pay, because the root cause of the floatlyness is
+not resolve.
+
+All you can do is to mitigate its effect. \
+Take a look at [Celeste](https://store.steampowered.com/app/504230/Celeste).
+
+One of the game that have a tight and satify player controller in the
+platformer genere.
+
+They need to nail this stuff, because in Celeste there are a ton of
+platform session that require a percise jump from the player.
+
+This is not possible if you based this around a physics engine.
+
+Lucky for me, this game is not really having a lot of the platform session
+and it didn't require a percise jump.
+
+This allow me to focus on the other aspect of the project without having
+to re-implement the player controller.
+
+Although, I love a tight control feeling of the platformer in general.
+(Like in __Celeste__)
+
+If I have a chance to remake this game, This will be the first thing I want to re-implement.
+
+Now, let's talk about the implementation detail of player controller.
+
+> (todo) technical aspect of how each things works
+> (jumping, physic based. Fighting with physics)
+
+__Walking__
+
+(footstep by cast down to the ground, see if there is a ground tag and
+play sound effect appropiate)
+
+(during stay on top of the platform here)
+
+__Jumping__
 
 (check ground by overlap circle) (avoid alloc every fix time step by pre-alloc)
+One issue is to avoid unnecessary allocation at every fixed update cycle.
+
+Because, I don't want a Garbage Collector (GC) to kick in cleaning the
+stuff during gameplay making it look like a random freeze spike in the player perspective.
+
+So, I have to pre-allocate, make a buffer and change the overlap testing method to the stuff that support a buffer.
 
 (wall jump, ray cast to check wall with the same direction of the player
 facing, allow player to jump up about 63 degree)
 
 (one way collision by unity itself)
 
-(push pull box, overlap box (trigger area) to check player). Move by set its velocity)
+__Push & Pull box__
 
-(footstep by cast down to the ground, see if there is a ground tag and
-play sound effect appropiate)
+(push pull box, overlap box (trigger area) to check player). Move by set its velocity)
 
 #### Camera System (Camera Trigger (avoid blind jump in platformer & cinematic cutscene trigger), game cinematic)
 __Game Cinematic:__(?)
@@ -135,8 +196,12 @@ __Game Cinematic:__(?)
 ![door and switch](/dg-door-and-switch.png)
 
 #### Moving Platform
+(todo) This is the small price I have to pay for using physics based platformer.
+
 #### Collectable
+
 #### Loading Screen
+
 #### Game UI
 (TODO) 
 Unity Canvas do the jobs nicely
@@ -253,13 +318,13 @@ Unfortunately, We don't want to use its solution.
 
 Not only it techically still in the beta, but also the amount of work we have to do in order to prepare our sprite is way too much for our use case.
 
-( We just want to snap our sprite to the grid, for god sake... )
+We just want to snap our sprite to the grid. ( for god sake... )
 
 That's why this tools was created. \
 The placing sprite logic is similar to the __Collision & Collider
 Plotter__.
 
-One issue I have to deal is to prevent too much waste in game object when placing the multiple sprites that use the same texture.
+One issue I have to deal is to prevent too much waste in the game object when placing the multiple sprites that use the same texture.
 
 Lucky for me, I can change the sprite draw mode to tile to make texture repeat itself to fit the size of the sprite.
 
@@ -297,7 +362,7 @@ If I want to start playing from the "Introduction" scene, I have to close
 the "Level5" scene first and then have to manually open the "Introduction" scene before entering the play mode.
 
 Which make me frustrated overtime. \
-So, this tools keeping me sane while play testing dozen times.
+So, this tools keeping me sane while play testing dozen of times.
 
 <br/>
 {{< youtube id="PaeOfl0nNyM" >}}
@@ -305,12 +370,8 @@ So, this tools keeping me sane while play testing dozen times.
 You can view the implementation [here](https://github.com/CSaratakij/SceneSelector) .
 
 ## How we design a game pacing
-(todo)(the overall design of phase and the chart of difficulty & the period of the phase)
-(don't forget to warn about spoiler alert in our game pacing design, how you teach player on spot of how focus works and how box puzzle works)
-(how you teach player to grab & push box)
-
 Once we finished interating a lot of levels and decide which level to keep in the game, 
-we connect all the levels based on their difficulty and start play testing from the beginning of the game.
+we connect all the levels based on their difficulty and start play testing from the beginning.
 
 Not only to estimate how much time player need to complete this game, but also wanted to see how each level feels when connect to each other.
 
@@ -321,7 +382,10 @@ Then we introduce the new ability or some shift in the game mechanic when player
 {{< figure src="/dg-pacing.jpg" caption="( This image is a rough approximate of how this game pacing works )" >}}
 
 I strongly disagree about front-load tutorial, so the first two phase of the
-game was crafted with the extra care to make sure that I introduce player to the game properly.
+game was crafted with extra care to make sure that I introduce player to the game properly.
+
+The idea is simple, introduce player to the concept in the smallest fashion
+rather than overwhelm player with too much information at the given time.
 
 ### Beginning Phase
 The main goals of this phase is to make player familar with how to control their character.
@@ -354,7 +418,7 @@ This phase also explain the limit of the focus ability as well.
 At first, I throw player in the situation where they need to use the focus
 ability in order to proceed.
 
-Not only it help player to understand what it capable of, but also how to use it to solve their problem as well.
+Not only it help player to understand what it capable of, but also how to use it to solve the puzzle as well.
 
 ![tutorial-0](/dg-3.png)
 
@@ -378,7 +442,7 @@ So, player will start to think about how useful the box would be.
 Later on, I occasionally remind player about how focus ability work.
 And introduce other limitation of the focus ability.
 
-In this case, It's about the position of the character when start using the focus ability is matter.
+In this case, It's about the position of the character when start using the focus ability matter.
 
 ![tutorial-4](/dg-7.png)
 
@@ -410,7 +474,7 @@ Because in the player mind, they just got enough of the puzzle at this point.
 
 In the end, it's coming together nicely.
 
-The game took about 10 minutes to finish if player know how to solve those puzzle.
+The game took about 10 minutes to finish if player know how to solve those puzzles.
 
 Not too long and not too short for the game session.
 
