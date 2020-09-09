@@ -211,23 +211,76 @@ __Push & Pull box__
 ![push and pull box](/dg-box-pull-push.png)
 
 Push and pull box have two states.
-(push pull box, overlap box (trigger area) to check player). Move by set its velocity)
 
-1) 
+__Before grab__
 
-2) 
+The box will have a mass different than a player character to prevent it from moving with a simple bump from the character collider.
+
+If player getting closer to a box, it will show which key to make player able to grab itself.
+
+__During grab__
+
+After player successfully grab a box, it will move along with the
+character.
+
+It will keep checking if player is still closer to the box by simply overlap testing.
+
+I have to keep testing it during fixed update cycle because the OnTriggerStay message is not a reliable way to test if something is still overlaping on something.
+
+The area of testing is draw by using a Gizmos, a yellow rectangle that
+surround the box.
+
+If player stop overlapping to the area of testing, I will stop player from grabbing a box.
 
 #### Camera System (Camera Trigger (avoid blind jump in platformer & cinematic cutscene trigger), game cinematic)
 
+I use orthogonal view as a default. ( Of course, It's a 2d game anyway )
+
+The reason I support only __16:9 screen ratio__ is because this game puzzle is playing with a camera and design with this screen ratio as a default.
+
+At the moment player use the focus ability, the camera will freeze limit how much player will see the level.
+
+With this design choice, some of the game puzzle cannot be solve without this screen ratio.
+
+These are the things that I implement as a part of the camera system.
+
+__Camera Follow__
+
+This use mainly by a player controller but also by the game cinematic to
+make a camera focus and follow the target.
+
+It has an offset setting, mainly use to shift the camera upward to avoid too much wasted space of the screen when trying to focus on the player
+but didn't want the player to see much of the ground sprite.
+
+By combine offset setting with a camera trigger, it can be use to avoid
+a __blind jump__ by shifting the camera to the appropriate offset within the given situation.
+
+__Blind Jump__ is a situation where player didn't know where their character will land if they starting to jump.
+As a platformer, it's best to avoid this situation at all cost.
+
+Take a look at the image.
+
+![blind jump example](/dg-blind-jump.png)
+
+How player gonna know where their character is gonna land if they initiate the jump to the right?
+
+__Camera Trigger__
+
 (todo) A blue rectangle draw by Unity Gizmos.
+(one issue is how player can bypass a small area by using a focus ability
+(todo)(I have to make this area big enough to prevent the trigger from missing
+its target))
 
 ![camera offset trigger](/dg-camera-offset-trigger.png)
 
-__Game Cinematic:__(?)
+__Game Cinematic__
+
+This is a part of the camera system.
 (explain about this section)
 
 #### World Wrapping Mechanic (Focus)(don't forget about the sprite mask, box effect by focus)
 (This one is the most challenge things to implement, took me sometime to figure out.)
+(The actual world wrapping logic is not really hard to come up.) (The hard things is to come up with a general case.)
 
 __Normal Mode__
 
