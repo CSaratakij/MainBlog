@@ -6,7 +6,7 @@ tags: [Unity, NSC2018, Custom Editor]
 weight: 12
 draft: false
 ---
-The puzzle platformer with a twist. Player can use a “Focus” power, the ability to bend a dimension to overcome the obstacle. (2nd runner up in NSC2018)
+The puzzle platformer with a twist. Player can use a “Focus” power, the ability to bend a dimension to overcome the obstacle.
 
 ![Doppelganger](/dg-cover.png)
 
@@ -24,9 +24,9 @@ other member: \
 Before you read any further, I have to warn you. There are some __spoiler__ of the puzzle in this game. Please play the game first to avoid any spoiler.
 
 This game is the entry for __The Twentieth National Software Contest: NSC 2018__.
-We manage to get the __2nd runner up__ in ___"Program for entertainment"___ .
-
 We have about __3 months__ to finish this project.
+
+We manage to get the __2nd runner up__ in ___"Program for entertainment"___ .
 
 Since I mainly do a game system and some of the game design, I will cover these topics with in depth. However, I will leave the art aspect to the 
 artist himself.
@@ -101,7 +101,7 @@ A short term goals of the player is to figure out how to keep progressing furthe
 At the end, our entire month was gone. But we have a strong starting point and an interesting mechanic worth exploring.
 
 ## Things that I implemented
-This is the technical aspect of the project and it's really long.
+This is the technical aspect of the project and it's quite long.
 If you aren't interested in this topic, you can skip to [How we design a game pacing](#how-we-design-a-game-pacing) .
 
 ### Game System
@@ -170,14 +170,22 @@ player found a platform by overlap testing around the feet of the character.
 
 __Jumping__
 
-(todo) how high & low jump works here
-
 There are low and high jump in this game.
 
-This is possible by manipulate a gravity based on the way player press
-their jump button.
+This is possible by manipulate a gravity based on the way player press their jump button.
 
+Normally, player will experience a normal gravity.
 
+At the moment player starting to press the jump button, I will add the upward force to the character once.
+
+After that, I still checking for the key press but it won't add the force
+to the character anymore.
+
+If player keep holding down the jump button until the character starting
+to fall, player will experience the normal gravity.
+
+But if player release their jump button before the character reach to the highest jump possible,
+player will experience a higher gravity forcing the character to fall down sooner than it would normally be.
 
 ![jump curve](/dg-jump-curve.jpg)
 
@@ -202,7 +210,12 @@ __Push & Pull box__
 
 ![push and pull box](/dg-box-pull-push.png)
 
+Push and pull box have two states.
 (push pull box, overlap box (trigger area) to check player). Move by set its velocity)
+
+1) 
+
+2) 
 
 #### Camera System (Camera Trigger (avoid blind jump in platformer & cinematic cutscene trigger), game cinematic)
 
@@ -214,7 +227,7 @@ __Game Cinematic:__(?)
 (explain about this section)
 
 #### World Wrapping Mechanic (Focus)(don't forget about the sprite mask, box effect by focus)
-(This one is the hardest to implement, took me sometime to figure out.)
+(This one is the most challenge things to implement, took me sometime to figure out.)
 
 __Normal Mode__
 
