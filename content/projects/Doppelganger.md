@@ -232,7 +232,7 @@ surround the box.
 
 If player stop overlapping to the area of testing, I will stop player from grabbing a box.
 
-#### Camera System (Camera Trigger (avoid blind jump in platformer & cinematic cutscene trigger), game cinematic)
+#### Camera System
 
 I use orthogonal view as a default. ( Of course, It's a 2d game anyway )
 
@@ -255,10 +255,10 @@ but didn't want the player to see much of the ground sprite.
 By combine offset setting with a camera trigger, it can be use to avoid
 a __blind jump__ by shifting the camera to the appropriate offset within the given situation.
 
-__Blind Jump__ is a situation where player didn't know where their character will land if they starting to jump.
-As a platformer, it's best to avoid this situation at all cost.
+__Blind Jump__ is a situation where player didn't know where their character is gonna land if they starting to jump.
 
-Take a look at the image.
+As a platformer, it's best to avoid this situation at all cost. \
+Take a look at this image.
 
 ![blind jump example](/dg-blind-jump.png)
 
@@ -266,17 +266,32 @@ How player gonna know where their character is gonna land if they initiate the j
 
 __Camera Trigger__
 
-(todo) A blue rectangle draw by Unity Gizmos.
-(one issue is how player can bypass a small area by using a focus ability
-(todo)(I have to make this area big enough to prevent the trigger from missing
-its target))
+This use to change the camera setting and trigger the game cinematic when player enter the trigger area.
+
+The area is draw by Gizmos using a blue rectangle to represent the trigger area.
+
+I have to make it this large, because player can bypass a small area by using a focus ability.
 
 ![camera offset trigger](/dg-camera-offset-trigger.png)
 
 __Game Cinematic__
 
 This is a part of the camera system.
-(explain about this section)
+
+At that time, the Unity Timeline tools which is suppose to help making a game cinematic easier is still in alpha.
+
+I play around with this tools a little bit and it sad to say that this tools is not gonna work at the time we develop this game.
+
+I kinda want to implement just a necessary feature in the Unity Timeline to help our life easier but we don't have a time to actually pull this off.
+
+So, I decide to just stick with a simple cinematic possible. Something like, just make a camera focusing on some target.
+
+This allow me to re-use our camera stuff like for example a __Camera Follow__.
+
+And other stuff that require a logic to work other than a camera in the
+game cinematic, I'll just code it specifically for that scene.
+
+And it works perfectly, I don't have to spend too much time on a game cinematic and have an extra time to do something else.
 
 #### World Wrapping Mechanic (Focus)(don't forget about the sprite mask, box effect by focus)
 (This one is the most challenge things to implement, took me sometime to figure out.)
