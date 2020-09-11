@@ -124,8 +124,8 @@ physics engine and roll your own based on the specific need of your current proj
 All the physics based platformer suffer from the floatlyness in which is
 the feeling of not in control of the character.
 
-Making the tight platformer controls by based around the physics engine is
-just a brute force process of tweaking a multiple parameters of the physics engine to get the result closest to what you want.
+Making the tight platformer controls by based around the physics engine
+it's just a brute force process of tweaking a multiple parameters of the physics engine to get the result closest to what you want.
 
 There is still a cost to pay, because the root cause of the floatlyness is
 not resolve.
@@ -174,6 +174,8 @@ There are low and high jump in this game.
 
 This is possible by manipulate a gravity based on the way player press their jump button.
 
+![jump curve](/dg-jump-curve.jpg)
+
 Normally, player will experience a normal gravity.
 
 At the moment player starting to press the jump button, I will add the upward force to the character once.
@@ -186,8 +188,6 @@ to fall, player will experience the normal gravity.
 
 But if player release their jump button before the character reach to the highest jump possible,
 player will experience a higher gravity forcing the character to fall down sooner than it would normally be.
-
-![jump curve](/dg-jump-curve.jpg)
 
 As for the ground detection, I use overlap testing instead of the multiple
 raycast.
@@ -270,9 +270,9 @@ This use to change the camera setting and trigger the game cinematic when player
 
 The area is draw by Gizmos using a blue rectangle to represent the trigger area.
 
-I have to make it this large, because player can bypass a small area by using a focus ability.
-
 ![camera offset trigger](/dg-camera-offset-trigger.png)
+
+I have to make it this large, because player can bypass a small area by using a focus ability.
 
 __Game Cinematic__
 
@@ -310,7 +310,7 @@ Let's start with a basic of this ability, the focus (normal mode).
 
 __Normal Mode__
 
-(todo)The focus ability as a text is simple, ....
+The focus ability as a text is simple, It'll wrap player back to the opposite side of where they came from.
 
 But what it actually mean to wrap themself back?
 
@@ -318,45 +318,98 @@ Take a look at this situation.
 
 ![wrapping problem](/dg-wrapping-problem.jpg)
 
-Assume the focus ability size is cover the entire screen.
+Assume the focus ability frame is cover the entire screen.
 If player going to point A, do they wrap themself back to point B?
 
 If they wrap themself back to point B, then how about this normal situation?
 
 ![diagonal wrap](/dg-wrapping-diagonal.jpg)
 
-(todo)This looks weird.
+If those assumption is correct, then does it mean the wrapping mechanic wrap player diagonally?
 
-What player expects, ...
+In the player perspective, this looks weird.
+
+What player expect in this normal situation is to wrap themself horizontally.
 
 ![horizontal wrap](/dg-wrapping-horizontal.jpg)
 
-(image about design problem in normal situation that contradict the normal case here, diagonal wrap contradict normal case)
+If I want to make the normal case to work as aspect, I have to think about the general case that will explain these two situation perfectly.
 
-(contradict general case, 2 approach we can do)
+And that general case is what I call the __"Absolute Wrapping"__
 
-__Absolute Wrapping__
-1.) Able to wrap no matter what. (this is a nightmare for gating problem) \
-(if there is a space left, it will be possible to wrap)
+__Absolute Wrapping__ is an approach to look at this problem by taking the
+strong stand on the world wrapping.
+
+The idea is simple.
+
+If there is an empty space that player can fit through, player can wrap themself back regardless of the starting position of the player.
 
 ![wrapping approach one](/dg-wrapping-one-approach.jpg)
 
-__K.I.S.S Wrapping__
-2.) Wrapping will not change the height of the character. (most likely what we gonna do) (keep it simple)
+For example. As long as there is an empty space, player can go to the opposite side in which the player start position's height 
+don't have to be the same height after finish wrapping.
+
+But there is an issue with this approach. \
+Not the technical stuff, but the design decision.
+
+If I implement this in the Absolute Wrapping way, It kinda broke the level.
+(Gating problem)
+
+This mechanic will be too powerful and can bypass any obstacle with ease.
+
+By making this ability too powerful, I downgrade this ability to be use as a gimmick.
+
+I want player to rely on the focus ability as the key to solve the
+puzzle.
+
+If this ability is not only easy to use but also easy to not thinking about the puzzle at all while activating this, It kinda defeat the purpose of this game.
+
+Imagine you develop the game about lock picking.
+
+And from the start instead of giving player the lock picking tools, You give player the master key to unlock anything.
+(What's the point of the lock picking then?)
+
+But there is still a hope. \
+There is other way to think about the world wrapping.
+
+__K.I.S.S Wrapping__ or keep it simple (stupid) wrapping is the simpler way to world
+wrapping in which it will only wrap player per axis at a time.
 
 ![wrapping kiss](/dg-wrapping-kiss.jpg)
 
-(todo) approach 2 have its own set of problem. \
-(It's like making a game mainly about a lock picking. But instead of giving player a lock picking tools, the game just give player a master key. )
-(What's the point of this lock picking game?)
+For example. If player come from the left side, It will wrap player to the right side.
+
+But instead of looking for any potential empty space, the left and right is clearly the horizontal axis.
+
+So, It's gonna wrap player only x axis and keep the y axis as the same value before wrapping.
+
+This mean player cannot wrap themself to the other side when their height is not the same as the wrapping destination.
+
+The same thing also apply when player wrapping vertically.
+
+If player come from the lower side, it's gonna wrap player to the upper
+side while keep the x axis value.
+
+With this nerf, the gating problem is easier to solve. Allow us to make some interesting obstacle.
+
+But this approach also have its own set of problem, I cannot blindly wrap player.
+
+Because if I do, player will get stuck in other collider.
+Like a wall or a ground in player perspective.
 
 ![stuck with wall while wrapping](/dg-wrapping-stuck.jpg)
 
-Now, let's dive into the implementation detail to see how this is actually works.
+So, I have to come up with a way to check if the wrapping destination it's safe before beginning to wrap player.
+
+Now, let's dive into the implementation detail to see how it's done.
 
 __Wrapping Character Back__
 
 (reach to the edge (half), sprite mask and line renderer)
+(image about focus (sprite mask))
+
+Note:
+(focus frame 4 point coordinate is mainly a world point from player character)
 
 __Limit Wrapping Capability__
 
@@ -364,32 +417,40 @@ __Limit Wrapping Capability__
 (talk about its consequence (make own ground))
 
 (todo : Note)
-(don't forget to talk about how it come to decide a general case)
-
-(don't forget to talk about how focus works (implementation))
 (don't forget to talk about the consequence of the general case, it allow you to make a ground)
-
 (don't forget to sprite mask)
-
 (don't forget to box effect by focus)
 
 __Move Mode__
+(image about move mode here)
+(check frame position, if it possible to place in that position)
+(don't allow player to activated this ability when jump)
 
 __Edit Mode__
+(image about edit mode here)
+(check frame position, if it possible to place in that position)
 
 #### GamePad support
+(XInput, Direct Input here (why use direct input as a fall back))
+(polling gamepad connection here..)
 
 #### Game Progress
+(Json saving, miss oppotunity to save as async here...)
+(Save progress in runtime, serialize once)
+(Load on game start)
 
 #### Door & Switch
 ![door and switch](/dg-door-and-switch.png)
 
 #### Moving Platform
 (todo) This is the small price I have to pay for using physics based platformer.
+(kinematic and gizmos here...)
 
 #### Collectable
+(photo here.., integrate with game progress (system))
 
 #### Loading Screen
+(load scene async make it possible)
 
 #### Game UI
 (TODO) 
