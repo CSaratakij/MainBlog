@@ -282,7 +282,7 @@ At that time, the Unity Timeline tools which is suppose to help making a game ci
 
 I play around with this tools a little bit and it sad to say that this tools is not gonna work at the time we develop this game.
 
-I kinda want to implement just a necessary feature in the Unity Timeline to help our life easier but we don't have a time to actually pull this off.
+I kinda want to implement just a necessary feature like the thing in the Unity Timeline to help our life easier but we don't have a time to actually pull this off.
 
 So, I decide to just stick with a simple cinematic possible. Something like, just make a camera focusing on some target.
 
@@ -294,10 +294,84 @@ game cinematic, I'll just code it specifically for that scene.
 And it works perfectly, I don't have to spend too much time on a game cinematic and have an extra time to do something else.
 
 #### World Wrapping Mechanic (Focus)(don't forget about the sprite mask, box effect by focus)
-(This one is the most challenge things to implement, took me sometime to figure out.)
-(The actual world wrapping logic is not really hard to come up.) (The hard things is to come up with a general case.)
+This one is the most challenge things to implement in this project, took me sometime to figure out.
+
+The actual world wrapping logic is not really that hard, but the hard thing is to come up with a general case for the ability itself.
+
+Because it shouldn't need to have a special case for a particular level.
+
+Anyone that responsible for placing a level itself shouldn't have to place some
+magic trigger at a specific place in the level to actually make this
+works.
+
+It should just work consistently with any level that we throw at it.
+
+Let's start with a basic of this ability, the focus (normal mode).
 
 __Normal Mode__
+
+(todo)The focus ability as a text is simple, ....
+
+But what it actually mean to wrap themself back?
+
+Take a look at this situation.
+
+![wrapping problem](/dg-wrapping-problem.jpg)
+
+Assume the focus ability size is cover the entire screen.
+If player going to point A, do they wrap themself back to point B?
+
+If they wrap themself back to point B, then how about this normal situation?
+
+![diagonal wrap](/dg-wrapping-diagonal.jpg)
+
+(todo)This looks weird.
+
+What player expects, ...
+
+![horizontal wrap](/dg-wrapping-horizontal.jpg)
+
+(image about design problem in normal situation that contradict the normal case here, diagonal wrap contradict normal case)
+
+(contradict general case, 2 approach we can do)
+
+__Absolute Wrapping__
+1.) Able to wrap no matter what. (this is a nightmare for gating problem) \
+(if there is a space left, it will be possible to wrap)
+
+![wrapping approach one](/dg-wrapping-one-approach.jpg)
+
+__K.I.S.S Wrapping__
+2.) Wrapping will not change the height of the character. (most likely what we gonna do) (keep it simple)
+
+![wrapping kiss](/dg-wrapping-kiss.jpg)
+
+(todo) approach 2 have its own set of problem. \
+(It's like making a game mainly about a lock picking. But instead of giving player a lock picking tools, the game just give player a master key. )
+(What's the point of this lock picking game?)
+
+![stuck with wall while wrapping](/dg-wrapping-stuck.jpg)
+
+Now, let's dive into the implementation detail to see how this is actually works.
+
+__Wrapping Character Back__
+
+(reach to the edge (half), sprite mask and line renderer)
+
+__Limit Wrapping Capability__
+
+(talk about one way collision in 4 axis here, its block logic)
+(talk about its consequence (make own ground))
+
+(todo : Note)
+(don't forget to talk about how it come to decide a general case)
+
+(don't forget to talk about how focus works (implementation))
+(don't forget to talk about the consequence of the general case, it allow you to make a ground)
+
+(don't forget to sprite mask)
+
+(don't forget to box effect by focus)
 
 __Move Mode__
 
@@ -335,7 +409,7 @@ We cannot hope to quickly iterate our levels and finish this project without the
 #### Save ID Generator
 ![save id generator](/dg-save-id-generator.png)
 
-This tools help ensuring our checkpoint will have a unique ID.
+This tools help ensuring our checkpoint to have a unique ID.
 
 Because we iterate a lot of levels in a short period of time, we keep adding, changing its location and removing the
 checkpoint overtime.
