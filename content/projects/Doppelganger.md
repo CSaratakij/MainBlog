@@ -122,7 +122,7 @@ The better ways to do the platformer in general is to not rely on the
 physics engine and roll your own based on the specific need of your current project.
 
 All the physics based platformer suffer from the floatlyness in which is
-the feeling of not in control of the character.
+the feeling of not in control of character.
 
 Making the tight platformer controls by based around the physics engine
 it's just a brute force process of tweaking a multiple parameters of the physics engine to get the result closest to what you want.
@@ -166,7 +166,7 @@ the friction value to 0 to prevent its collider from getting stuck when characte
 The footstep sound effect will play while character moving around, and its sound effect will pick based on the game object tag that found by a simple raycast.
 
 As for the movement when staying on top of the platform, I translate character with the same velocity as the platform itself whenever
-player found a platform by overlap testing around the feet of the character.
+player found a platform by overlap testing around the feet of character.
 
 __Jumping__
 
@@ -255,7 +255,7 @@ but didn't want the player to see much of the ground sprite.
 By combine offset setting with a camera trigger, it can be use to avoid
 a __blind jump__ by shifting the camera to the appropriate offset within the given situation.
 
-__Blind Jump__ is a situation where player didn't know where their character is gonna land if they starting to jump.
+__Blind Jump__ is a situation where player don't know where their character is gonna land if they starting to jump.
 
 As a platformer, it's best to avoid this situation at all cost. \
 Take a look at this image.
@@ -409,7 +409,7 @@ __Wrapping Character Back__
 
 Assume that the wrapping destination is safe.
 
-When half of the character reach the edge of the focus frame, 
+When half of character reach the edge of the focus frame, 
 I'll set character a new position to the opposite side depending on the side of the focus that character enter.
 
 It's like character just do a teleportation.
@@ -424,15 +424,45 @@ The sprite of mask itself is just a one unit sprite that scale its size to match
 
 The solid frame is a built in Unity Line Renderer.
 
-And necessary focus frame decoration at the edge of this frame is just a sprite that place at runtime by finding 
+And a necessary focus frame decoration at the edge of this frame is just a sprite that place at runtime by finding 
 an edge world coordinate from the format that focus frame use.
 
 __Limit Wrapping Capability__
 
-![image about blocking situation here]()
+There is a situation where character won't be safe to go to the wrapping destination.
+
+In this image, you can see the focus frame itself overlap to the wall
+on the left.
+
+![wall stuck situation](/dg-wall-stuck-explain.png)
+
+When this happen, there is an invisible wall to prevent character from reaching the edge of the focus frame by a half of character.
+
+![blocker](/dg-blocker-01.jpg)
+
+I will refer the invisible wall as a __blocker__.
+
+In the normal situation, there are blockers on each side of the focus.
+![image about 4 axis block here]()
+
+To make thing simple, let's focus on just one blocker.
+![image about explain the gaps that we left to make half character
+possible]()
+
+> In this case, the wrapping destination is still on the left side.
+
+> You can think of it like
+
+[image that explain the concept here]
+
+This is what it looks like in the Unity Editor.
+
+[image here]
 
 (talk about one way collision in 4 axis here, its block logic)
-![image about 4 axis block here]()
+
+But there is an interesting situation here.
+![image about first tutorial about its limit here]()
 
 (talk about its consequence (make own ground))
 ![wrapping general case consequence](/dg-build-ground.png)
@@ -441,17 +471,20 @@ __Limit Wrapping Capability__
 (don't forget to talk about the consequence of the general case, it allow you to make a ground)
 (don't forget to sprite mask)
 
-(don't forget to box effect by focus)
-![box effect by focus](/dg-box-effect-by-focus.png)
-
 __Move Mode__
-(image about move mode here)
-(check frame position, if it possible to place in that position)
+
+![focus move mode](/dg-focus-movemode.png)
+
+(check frame position, if it possible to place in that position (clamp to not geater than the whole viewport))
 (don't allow player to activated this ability when jump)
 
 __Edit Mode__
 (image about edit mode here)
 (check frame position, if it possible to place in that position)
+
+(summary of world wrapping mechanic)
+(don't forget to box effect by focus)
+![box effect by focus](/dg-box-effect-by-focus.png)
 
 #### GamePad support
 (XInput, Direct Input here (why use direct input as a fall back))
