@@ -442,9 +442,10 @@ I will refer the invisible wall as a __blocker__.
 
 ![blocker](/dg-blocker-01.jpg)
 
-__Blocker__ is just a collider.
+__Blocker__ is just a collider that I control its position during runtime.
 
-Since I use physics engine in __Player Controller__, I'll let physics engine handle the collision resolution. 
+Since I use physics engine in __Player Controller__, I'll let physics engine handle the collision resolution between player character
+and the blocker. 
 
 In the normal situation, there are blockers on each side of the focus frame.
 
@@ -478,7 +479,7 @@ What if there is enough space on the wrapping destination?
 
 If you guess player can freely move to the left side, then you wrong.
 
-Remember that the __KISS Wrapping__ doesn't care about any potential empty space, It's care only if player can wrap to the other side.
+Remember that the KISS Wrapping __doesn't care__ about __any potential empty space__, It's care only if player can wrap to the other side.
 
 In this case, the area of overlap testing looks like this.
 
