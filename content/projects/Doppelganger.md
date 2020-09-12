@@ -294,6 +294,8 @@ game cinematic, I'll just code it specifically for that scene.
 And it works perfectly, I don't have to spend too much time on a game cinematic and have an extra time to do something else.
 
 #### World Wrapping Mechanic (Focus)(don't forget about the sprite mask, box effect by focus)
+![world wrapping mechanic](/dg-focus-wrapping.png)
+
 This one is the most challenge things to implement in this project, took me sometime to figure out.
 
 The actual world wrapping logic is not really that hard, but the hard thing is to come up with a general case for the ability itself.
@@ -352,19 +354,19 @@ don't have to be the same height after finish wrapping.
 But there is an issue with this approach. \
 Not the technical stuff, but the design decision.
 
-If I implement this in the Absolute Wrapping way, It kinda broke the level.
+If I implement this in the Absolute Wrapping way, It's kinda broke the level.
 (Gating problem)
 
 This mechanic will be too powerful and can bypass any obstacle with ease.
 
-By making this ability too powerful, I downgrade this ability to be use as a gimmick.
+By making this ability too powerful, I accidentally downgrade this ability to be use as a gimmick.
 
 I want player to rely on the focus ability as the key to solve the
 puzzle.
 
-If this ability is not only easy to use but also easy to not thinking about the puzzle at all while activating this, It kinda defeat the purpose of this game.
+If this ability is not only easy to use but also make player not to think about the puzzle at all while activating this, It's kinda defeat the purpose of this game.
 
-Imagine you develop the game about lock picking.
+Imagine you develop a game about lock picking.
 
 And from the start instead of giving player the lock picking tools, You give player the master key to unlock anything.
 (What's the point of the lock picking then?)
@@ -372,7 +374,7 @@ And from the start instead of giving player the lock picking tools, You give pla
 But there is still a hope. \
 There is other way to think about the world wrapping.
 
-__K.I.S.S Wrapping__ or keep it simple (stupid) wrapping is the simpler way to world
+__KISS Wrapping__ or keep it simple (stupid) wrapping is the simpler way to world
 wrapping in which it will only wrap player per axis at a time.
 
 ![wrapping kiss](/dg-wrapping-kiss.jpg)
@@ -399,27 +401,48 @@ Like a wall or a ground in player perspective.
 
 ![stuck with wall while wrapping](/dg-wrapping-stuck.jpg)
 
-So, I have to come up with a way to check if the wrapping destination it's safe before beginning to wrap player.
+So, I have to come up with a way to check if the wrapping destination is safe before beginning to wrap player.
 
 Now, let's dive into the implementation detail to see how it's done.
 
 __Wrapping Character Back__
 
-(reach to the edge (half), sprite mask and line renderer)
-(image about focus (sprite mask))
+Assume that the wrapping destination is safe.
 
-Note:
-(focus frame 4 point coordinate is mainly a world point from player character)
+When half of the character reach the edge of the focus frame, 
+I'll set character a new position to the opposite side depending on the side of the focus that character enter.
+
+It's like character just do a teleportation.
+
+![near the edge](/dg-focus-wrapping-01.png)
+
+The actual frame size of focus is store using the world coordinate position and its size (width, height).
+
+To mask character within the frame, I use the built in Sprite Mask.
+
+The sprite of mask itself is just a one unit sprite that scale its size to match the focus size at runtime.
+
+The solid frame is a built in Unity Line Renderer.
+
+And necessary focus frame decoration at the edge of this frame is just a sprite that place at runtime by finding 
+an edge world coordinate from the format that focus frame use.
 
 __Limit Wrapping Capability__
 
+![image about blocking situation here]()
+
 (talk about one way collision in 4 axis here, its block logic)
+![image about 4 axis block here]()
+
 (talk about its consequence (make own ground))
+![wrapping general case consequence](/dg-build-ground.png)
 
 (todo : Note)
 (don't forget to talk about the consequence of the general case, it allow you to make a ground)
 (don't forget to sprite mask)
+
 (don't forget to box effect by focus)
+![box effect by focus](/dg-box-effect-by-focus.png)
 
 __Move Mode__
 (image about move mode here)
@@ -449,9 +472,6 @@ __Edit Mode__
 #### Collectable
 (photo here.., integrate with game progress (system))
 
-#### Loading Screen
-(load scene async make it possible)
-
 #### Game UI
 (TODO) 
 Unity Canvas do the jobs nicely
@@ -459,6 +479,10 @@ Unity Canvas do the jobs nicely
 (TODO) 
 I avoid Unity Event and its messaging system since it's slower than manually binding a native C# event.
 ( Even though it's less convenient to setup )
+
+#### Loading Screen
+![loading screen](/dg-loading-screen.png)
+(load scene async make it possible)
 
 ### Custom Editor
 Unity have a way to extend an editor to suit our project need. \
