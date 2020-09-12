@@ -407,7 +407,7 @@ Now, let's dive into the implementation detail to see how it's done.
 
 __Wrapping Character Back__
 
-Assume that the wrapping destination is safe.
+Assume the wrapping destination is safe.
 
 When half of character reach the edge of the focus frame, 
 I'll set character a new position to the opposite side depending on the side of the focus that character enter.
@@ -420,7 +420,7 @@ The actual frame size of focus is store using the world coordinate position and 
 
 To mask character within the frame, I use the built in Sprite Mask.
 
-The sprite of mask itself is just a one unit sprite that scale its size to match the focus size at runtime.
+The sprite of mask itself is just a one unit sprite that scale its size to match the focus frame size at runtime.
 
 The solid frame is a built in Unity Line Renderer.
 
@@ -438,38 +438,81 @@ on the left.
 
 When this happen, there is an invisible wall to prevent character from reaching the edge of the focus frame by a half of character.
 
-![blocker](/dg-blocker-01.jpg)
-
 I will refer the invisible wall as a __blocker__.
 
-In the normal situation, there are blockers on each side of the focus.
-![image about 4 axis block here]()
+![blocker](/dg-blocker-01.jpg)
+
+__Blocker__ is just a collider.
+
+Since I use physics engine in __Player Controller__, I'll let physics engine handle the collision resolution. 
+
+In the normal situation, there are blockers on each side of the focus frame.
+
+![blocker with 4 axis](/dg-blocker-02.jpg)
+
+Each blocker will keep its distance away from focus frame to make sure player can do the world wrapping.
 
 To make thing simple, let's focus on just one blocker.
-![image about explain the gaps that we left to make half character
-possible]()
 
-> In this case, the wrapping destination is still on the left side.
+In order to make sure that player can go to the wrapping destination, 
+I have to make a quick overlap testing to see if there is enough space for this character to wrap.
 
-> You can think of it like
+In this case, character come from the right side.
+
+So, I have to overlap testing on the left side which use the same width and height as the character to test other collider.
 
 [image that explain the concept here]
 
-This is what it looks like in the Unity Editor.
+If the testing pass, I'll leave the blocker away from the focus frame.
+
+But, If the overlap testing fail, I'll move the blocker as close as the focus frame to block player from moving closer to the edge of the focus.
+
+[image that explain the concept here]
+
+Not all blockers will be move, It'll pick only the blocker at the same side of the wrapping destination.
+
+But there is other interesting situation here. \
+What if there is enough space on the wrapping destination?
+
+![image about first tutorial about its limit here]()
+
+If you guess player can freely move to the left side, then you wrong.
+
+Remember that the __KISS Wrapping__ doesn't care about any potential empty space, It's care only if player can wrap to the other side.
+
+In this case, the area of overlap testing looks like this.
 
 [image here]
 
-(talk about one way collision in 4 axis here, its block logic)
+As you can see, player wrapping horizontally.
 
-But there is an interesting situation here.
-![image about first tutorial about its limit here]()
+So, It's testing area will only care about x axis and keep the y axis.
 
-(talk about its consequence (make own ground))
+The result of overlap testing will fail, because it's overlap with a tiny ground collider at the right side.
+
+But, If player height change. \
+Now, the overlap testing area look like this.
+
+[image here]
+
+Overlap testing result will pass, this allow player to go to the wrapping destination by jumping to the left side.
+
+This is what it looks like in the Unity Editor.
+
+[video here..]
+
+The blocker will keep jumping back and forth between trying to block player and to not block player.
+
+But, there is a consequence. \
+The same thing apply to vertical axis.
+
+With this implementation, it allow us to do something like this.
+
 ![wrapping general case consequence](/dg-build-ground.png)
 
-(todo : Note)
-(don't forget to talk about the consequence of the general case, it allow you to make a ground)
-(don't forget to sprite mask)
+Because player cannot go to the upper side, It's block player from going to the lower side.
+
+Accidentally, making a convenient ground for player.
 
 __Move Mode__
 
