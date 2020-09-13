@@ -106,9 +106,9 @@ If you aren't interested in this topic, you can skip to [How we design a game pa
 
 ### Game System
 #### Player Controller
-![player controller](/dg-player-controller.png)
-
 This is the first thing I finished implementing.
+
+![player controller](/dg-player-controller.png)
 
 Without knowing what the game is gonna look like at first, I took an
 easiest way possible to approach this by making it based on the physics engine.
@@ -208,9 +208,9 @@ One way collision is using a built in Unity solution.
 
 __Push & Pull box__
 
-![push and pull box](/dg-box-pull-push.png)
-
 Push and pull box have two states.
+
+![push and pull box](/dg-box-pull-push.png)
 
 __Before grab__
 
@@ -294,9 +294,9 @@ game cinematic, I'll just code it specifically for that scene.
 And it works perfectly, I don't have to spend too much time on a game cinematic and have an extra time to do something else.
 
 #### World Wrapping Mechanic (Focus)(don't forget about the sprite mask, box effect by focus)
-![world wrapping mechanic](/dg-focus-wrapping.png)
-
 This one is the most challenge things to implement in this project, took me sometime to figure out.
+
+![world wrapping mechanic](/dg-focus-wrapping.png)
 
 The actual world wrapping logic is not really that hard, but the hard thing is to come up with a general case for the ability itself.
 
@@ -390,7 +390,7 @@ This mean player cannot wrap themself to the other side when their height is not
 The same thing also apply when player wrapping vertically.
 
 If player come from the lower side, it's gonna wrap player to the upper
-side while keep the x axis value.
+side while keeping the x axis value.
 
 With this nerf, the gating problem is easier to solve. Allow us to make some interesting obstacle.
 
@@ -470,7 +470,7 @@ But, If the overlap testing fail, I'll move the blocker as close as the focus fr
 
 ![overlap testing fail](/dg-blocker-04.jpg)
 
-Not all blockers will be move, It'll pick only the blocker at the same side of the wrapping destination.
+Not all blockers will be move, It'll pick only the blocker at the opposite side of the wrapping destination.
 
 But there is other interesting situation here. \
 What if there is enough space on the wrapping destination?
@@ -486,13 +486,12 @@ In this case, the area of overlap testing looks like this.
 ![overlap testing kiss-explain](/dg-blocking-kiss-explain.png)
 
 As you can see, player wrapping horizontally.
-
 So, It's testing area will only care about x axis and keep the y axis.
 
 The result of overlap testing will fail, because it's overlap with a ground collider at the right side.
 
-But, If player height change. \
-Now, the overlap testing area look like this.
+But, What If player position in y axis change? \
+Now, the overlap testing area looks like this.
 
 ![overlap testing kiss explain with height change](/dg-blocking-kiss-allow-explain.png)
 
@@ -517,10 +516,10 @@ Accidentally, making a convenient ground for player.
 
 __Move Mode__
 
-![focus move mode](/dg-focus-movemode.png)
-
 (check frame position, if it possible to place in that position (clamp to not geater than the whole viewport))
 (don't allow player to activated this ability when jump)
+
+![focus move mode](/dg-focus-movemode.png)
 
 __Edit Mode__
 (image about edit mode here)
