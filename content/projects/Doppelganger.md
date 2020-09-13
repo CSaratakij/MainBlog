@@ -460,22 +460,22 @@ I have to make a quick overlap testing to see if there is enough space for this 
 
 In this case, character come from the right side.
 
+![overlap testing pass](/dg-blocker-03.jpg)
+
 So, I have to overlap testing on the left side which use the same width and height as the character to test other collider.
 
-[image that explain the concept here]
-
-If the testing pass, I'll leave the blocker away from the focus frame.
+If the testing pass (no collider overlap to the testing area), I'll push the blocker away from the focus frame.
 
 But, If the overlap testing fail, I'll move the blocker as close as the focus frame to block player from moving closer to the edge of the focus.
 
-[image that explain the concept here]
+![overlap testing fail](/dg-blocker-04.jpg)
 
 Not all blockers will be move, It'll pick only the blocker at the same side of the wrapping destination.
 
 But there is other interesting situation here. \
 What if there is enough space on the wrapping destination?
 
-![image about first tutorial about its limit here]()
+![overlap testing kiss](/dg-blocking-kiss.png)
 
 If you guess player can freely move to the left side, then you wrong.
 
@@ -483,18 +483,18 @@ Remember that the KISS Wrapping __doesn't care__ about __any potential empty spa
 
 In this case, the area of overlap testing looks like this.
 
-[image here]
+![overlap testing kiss-explain](/dg-blocking-kiss-explain.png)
 
 As you can see, player wrapping horizontally.
 
 So, It's testing area will only care about x axis and keep the y axis.
 
-The result of overlap testing will fail, because it's overlap with a tiny ground collider at the right side.
+The result of overlap testing will fail, because it's overlap with a ground collider at the right side.
 
 But, If player height change. \
 Now, the overlap testing area look like this.
 
-[image here]
+![overlap testing kiss explain with height change](/dg-blocking-kiss-allow-explain.png)
 
 Overlap testing result will pass, this allow player to go to the wrapping destination by jumping to the left side.
 
