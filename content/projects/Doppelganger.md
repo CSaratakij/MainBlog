@@ -499,7 +499,8 @@ Overlap testing result will pass, this allow player to go to the wrapping destin
 
 This is what it looks like in the Unity Editor.
 
-[video here..]
+<br/>
+{{< youtube id="89UHRY-0vbk" >}}
 
 The blocker will keep jumping back and forth between trying to block player and to not block player.
 
@@ -516,24 +517,78 @@ Accidentally, making a convenient ground for player.
 
 __Move Mode__
 
-(check frame position, if it possible to place in that position (clamp to not geater than the whole viewport))
-(don't allow player to activated this ability when jump)
+This mode allow player to move the focus frame from its starting position
+which is the center of the player character.
 
 ![focus move mode](/dg-focus-movemode.png)
 
-__Edit Mode__
-(image about edit mode here)
-(check frame position, if it possible to place in that position)
+Since I use the same keybinding for player movement as a focus frame movement, I force player to stand still while using this ability.
+( That's why I call this ability __"Focus"__ )
 
-(summary of world wrapping mechanic)
-(don't forget to box effect by focus)
+There are limits in this ability. \
+First, You cannot move its frame further away from the character.
+
+<br/>
+{{< youtube id="4K9ba-5p0Ag" >}}
+
+If I allow it to move any further, the character will wrap itself while standing still.
+It'll look weird from player perspective kinda like the game is broke or something...
+
+There is also a situation where its frame cannot move when character upper space is not enough.
+
+![no upper space left](/dg-no-upper-space-left.png)
+
+This help preventing player from stucking to the wall while its frame trying to move up.
+
+All it take is just a quick raycast to see if there is any wall above character.
+
+The whole frame cannot move further away from the screen as well by convert the edge of screen into world point and just do a quick position clamping.
+
+And the last thing is to not allow player to activate the move mode while player in the mid-air to prevent
+player from quickly deactivate and activate this mode while in the mid-air which allow player to make a slightly change in position of the focus frame
+because of how world wrapping in vertical axis behave.
+
+This is not intended, feel likes a cheap trick when player pull this off. \
+That's why I don't allow this at all.
+
+__Edit Mode__
+
+This is similar to move mode, except with the change in size of the focus frame.
+
+One issue is to prevent the focus frame size to be smaller than the character size, I just need check if it can actually be shrink before attemping to set its actual size.
+
+Clamping its size to not be bigger than the screen is using the same logic as in the move mode.
+
+__World Wrapping Summary__
+
+Later on, we apply this world wrapping stuff to the box as well.
+
 ![box effect by focus](/dg-box-effect-by-focus.png)
+
+As you can see, this ability complexity is come from the focus normal mode.
+
+Once we went into this rabbit hole and figure things out, It turn to something quite interesting.
+
+The challenge is not only the technical stuff but also a design of the game as well.
+
+This is what I love about making a video game, specifically implementing stuff.
+
+The way you decide to solve the implementation problem has a huge impact in the gameplay.
+
+That's why when game programmer implementing something, not only we have
+to fulfill the requirement of the game but we also need to think of how system and player will react with each other.
+
+Some might say, it's a __game feels__.
+
+Like for example, if it's about implementing a jump mechanic. 
+Not only we have to make sure its jump will reach to the certain height, but also how player press their controller and how player character behave on the screen.
 
 #### GamePad support
 (XInput, Direct Input here (why use direct input as a fall back))
 (polling gamepad connection here..)
 
 #### Game Progress
+(Checkpoint is trigger like a Camera Trigger)
 (Json saving, miss oppotunity to save as async here...)
 (Save progress in runtime, serialize once)
 (Load on game start)
@@ -557,8 +612,9 @@ I avoid Unity Event and its messaging system since it's slower than manually bin
 ( Even though it's less convenient to setup )
 
 #### Loading Screen
-![loading screen](/dg-loading-screen.png)
 (load scene async make it possible)
+
+![loading screen](/dg-loading-screen.png)
 
 ### Custom Editor
 Unity have a way to extend an editor to suit our project need. \
