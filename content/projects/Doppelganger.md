@@ -546,7 +546,7 @@ All it take is just a quick raycast to see if there is any wall above character.
 The whole frame cannot move further away from the screen as well by convert the edge of screen into world point and just do a quick position clamping to the edge of the focus frame.
 
 And the last thing is to not allow player to activate the move mode while player in the mid-air to prevent
-player from quickly deactivate and activate this mode while in the mid-air which allow player to make a slightly change in position of the focus frame
+player from quickly deactivate and activate this mode while in the mid-air which allow player to make a slight change in position of the focus frame
 because of how world wrapping in vertical axis behave.
 
 This is not intended, feels like a cheap trick when player pull this off. \
@@ -556,13 +556,13 @@ __Edit Mode__
 
 This is similar to move mode, except with the change in size of the focus frame.
 
-One issue is to prevent the focus frame size to be smaller than the character size, I just need check if it can actually be shrink before attemping to set its actual size.
+One issue is to prevent the focus frame size to be smaller than the character size, I just need to check if it can actually be shrink before attemping to set its actual size.
 
 Clamping its size to not be bigger than the screen is using the same logic as in the move mode.
 
 __World Wrapping Summary__
 
-Later on, we apply this world wrapping stuff to the box as well.
+Later on, I apply this world wrapping stuff to the box as well.
 
 ![box effect by focus](/dg-box-effect-by-focus.png)
 
@@ -577,7 +577,7 @@ This is what I love about making a video game, specifically implementing stuff.
 The way you decide to solve the implementation problem has a huge impact in the gameplay.
 
 That's why when game programmer implement something, not only we have
-to fulfill the requirement of the game but we also need to think of how system and player will react with each other.
+to fulfill the requirement of the game but we also need to think of how system and player will interact with each other.
 
 Some might say, it's a __game feels__.
 
@@ -589,12 +589,13 @@ As first, I want to use XInput but Unity didn't support this at that time.
 There is a 3rd party library that handle this stuff perfectly.
 
 But I also want other platform to use game controller as well, that's why
-I implement with a built in Unity Input System as a fallback.
+I implement the input with a built in Unity Input System as a fallback.
 
-There is an issue about a game controller events, I need to know when the player plug in their game controller in order to show the proper key to press in the game ui.
+There is an issue about a game controller events, 
+I need to know when the player plug in their game controller in order to show the proper key to press in the game ui.
 
 Too bad, Unity won't provide this for me.
-I have to do a polling in which it will detect this event based on the change in the name of the game controller.
+I have to do a polling in which it will detect this event based on the change in the name of the game controller in the input devices list.
 
 I have two modes to detect.
 
@@ -614,7 +615,7 @@ Game will save when player hit the checkpoint.
 Checkpoint is just a trigger, similar to the camera trigger.
 
 Since the game doesn't have much data to save, All of the data that need
-to be in the save at first will store in the memory
+to be in the save at first will store in the memory.
 
 Once player hit checkpoint, it'll serialize the data into the persistent data path.
 The path itself depends on the platform.
@@ -626,6 +627,14 @@ The save will load once player want to continue the game from the main menu.
 
 Every instance that need to restore its state from this save will begin to
 initialize itself after the scene finish loading.
+
+One thing that I wish I do early is to make the save to disk asynchronously.
+
+It's one of those thing that I remind myself to fix as soon as possible,
+but in the end it still not fix.
+
+It's kinda like a joke where someone implement stuff temporary but end up survive to the production some how.
+(Which is not the good thing)
 
 #### Door & Switch
 This is really simple to implement. \
@@ -647,9 +656,9 @@ The moving logic is just a simple translation.
 
 ![moving platform](/dg-platform-editor.png)
 
-First, it'll pick a target destination in which is represent by gizmos with a rhombus shape.
+First, it'll pick a target destination in which is represent by gizmos with a diamond shape.
 
-Then it'll move along the direction by this expression where __v2__ is a target destination 
+Then it'll move along the direction which found by this expression where __v2__ is a target destination 
 and __v1__ is the position of the platform itself.
 
 $$direction = { \vec{v2} - \vec{v1} \over \lVert \vec{v2} - \vec{v1} \rVert } $$
@@ -668,10 +677,10 @@ or "Find all the clue (photo)" to explain why player need to pick these stuff.
 
 ![coin and chest](/dg-coin-and-chest.png)
 
-Sadly, me and our artist can't make this in time. \
+Sadly, both I and our artist can't make this in time. \
 The coin and photo can be found in the box.
 
-There are some coin that lay around in the level as well, but the issue is
+There are some coins that lay around in the level as well, but the issue is
 player cannot pick multiple coins at once.
 
 And again, I need to make a quick overlap testing (pre-allocate) to detect multiple coins.
@@ -722,7 +731,7 @@ checkpoint overtime.
 Without this tools, we have to keep checking every checkpoint we place manually to make sure its ID will not conflict with each other. \
 (Which is really time consuming process)
 
-With this tools, we can check and re-generate every checkpoint ID in one click. This help ensuring our save and load system working properly.
+With this tools, we can check and re-generate every checkpoint ID in one click. This help ensuring our save and load system to work properly.
 
 One of the problem I came across is how to make Unity save the
 change we made programmatically.
@@ -749,7 +758,7 @@ As you can see, each of the sprite has its own box collider.
 
 The problem here is that, player will get stuck at some point when they try to walk on this type of the collider setup.
 
-Despite how it look, a bunch of smaller box collider cannot provide a seemless ground surface.
+Despite how it looks, a bunch of smaller box collider cannot provide a seemless ground surface.
 
 Physics engine try to push away each pair of the collider when it detects the collision in each fixed update to prevent them from overlap to each other.
 
@@ -889,7 +898,7 @@ At first, I place the level in such a way that player will know exactly which wa
 
 ![beginning-0](/dg-0.png)
 
-Then I make player warm up their jump by introduce a little platform.
+Then I make player warm up their jump by introduce a little platform session.
 
 ![beginning-1](/dg-1.png)
 
@@ -944,7 +953,7 @@ In this case, It's about the position of the character when start using the focu
 After a lot of simple puzzle to solve that didn't involve the player
 timing at all in the tutorial phase, things starting to shift.
 
-At first is to play with the player timing, they need to use and disable
+At first is to play with the player timing, they need to activate and disable
 the focus ability at the right time in order to proceed.
 
 Then things will slowly getting harder and weirder, slowly increasing the
@@ -999,7 +1008,7 @@ __Done:__ is for the complete task.
 
 And the top piorities tasks will be tag with a label __"urgent"__.
 
-With this board, we can finish most of the necessary task. \
+With this board, we can finish most of the necessary tasks. \
 You can view the board [here](https://trello.com/b/hVPRrx2p/dg-frame) .
 
 ## Conclusion
