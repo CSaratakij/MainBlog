@@ -293,7 +293,7 @@ game cinematic, I'll just code it specifically for that scene.
 
 And it works perfectly, I don't have to spend too much time on a game cinematic and have an extra time to do something else.
 
-#### World Wrapping Mechanic (Focus)(don't forget about the sprite mask, box effect by focus)
+#### World Wrapping Mechanic (Focus)
 This one is the most challenge things to implement in this project, took me sometime to figure out.
 
 ![world wrapping mechanic](/dg-focus-wrapping.png)
@@ -542,13 +542,13 @@ This help preventing player from stucking to the wall while its frame trying to 
 
 All it take is just a quick raycast to see if there is any wall above character.
 
-The whole frame cannot move further away from the screen as well by convert the edge of screen into world point and just do a quick position clamping.
+The whole frame cannot move further away from the screen as well by convert the edge of screen into world point and just do a quick position clamping to the edge of the focus frame.
 
 And the last thing is to not allow player to activate the move mode while player in the mid-air to prevent
 player from quickly deactivate and activate this mode while in the mid-air which allow player to make a slightly change in position of the focus frame
 because of how world wrapping in vertical axis behave.
 
-This is not intended, feel likes a cheap trick when player pull this off. \
+This is not intended, feels like a cheap trick when player pull this off. \
 That's why I don't allow this at all.
 
 __Edit Mode__
@@ -575,7 +575,7 @@ This is what I love about making a video game, specifically implementing stuff.
 
 The way you decide to solve the implementation problem has a huge impact in the gameplay.
 
-That's why when game programmer implementing something, not only we have
+That's why when game programmer implement something, not only we have
 to fulfill the requirement of the game but we also need to think of how system and player will react with each other.
 
 Some might say, it's a __game feels__.
@@ -583,18 +583,62 @@ Some might say, it's a __game feels__.
 Like for example, if it's about implementing a jump mechanic. 
 Not only we have to make sure its jump will reach to the certain height, but also how player press their controller and how player character behave on the screen.
 
-#### GamePad support
-(XInput, Direct Input here (why use direct input as a fall back))
-(polling gamepad connection here..)
+#### GameController Support
+As first, I want to use XInput but Unity didn't support this at that time.
+There is a 3rd party library that handle this stuff perfectly.
+
+But I also want other platform to use game controller as well, that's why
+I implement with a built in Unity Input System as a fallback.
+
+There is an issue about a game controller events, I need to know when the player plug in their game controller in order to show the proper key to press in the game ui.
+
+Too bad, Unity won't provide this for me.
+I have to do a polling in which it will detect this event based on the change in the name of the game controller.
+
+I have two modes to detect.
+
+One is to keep checking the name each update cycle and other is to keep chechecking only when player press any key.
+
+I end up choosing the update cycle at the end which is more natural for the player in my opinion.
+
+But as a time goes by, I didn't integrate the 3rd party library.
+
+I keep doing other thing since the fallback solution works fine and I didn't have a time to actually put some compiler preprocessor to seperate
+a fallback solution from XInput and test this stuff properly.
 
 #### Game Progress
-(Checkpoint is trigger like a Camera Trigger)
-(Json saving, miss oppotunity to save as async here...)
-(Save progress in runtime, serialize once)
-(Load on game start)
+This game use JSON as a save file format. \
+Game will save when player hit the checkpoint.
+
+Checkpoint is just a trigger, similar to the camera trigger.
+
+Since the game doesn't have much data to save, All of the data that need
+to be in the save at first will store in the memory
+
+Once player hit checkpoint, it'll serialize the data into the persistent data path.
+The path itself depends on the platform.
+
+I didn't serialize the whole object, I pick only the necessary data and
+write a serializer and deserializer myself.
+
+The save will load once player want to continue the game from the main menu.
+
+Every instance that need to restore its state from this save will begin to
+initialize itself after the scene finish loading.
 
 #### Door & Switch
+This is really simple to implement. \
+I just do a bool flag to represent the door open state.
+
 ![door and switch](/dg-door-and-switch.png)
+
+Switch is act as the one bool flag.
+
+All the bool flag need to do an
+__"AND"__ operation to figure out the door actual state.
+
+The pressue plate switch need to do an overlap testing to ensure the
+reliable checking of something appear over this switch such as box and player.
 
 #### Moving Platform
 (todo) This is the small price I have to pay for using physics based platformer.
@@ -604,17 +648,26 @@ Not only we have to make sure its jump will reach to the certain height, but als
 (photo here.., integrate with game progress (system))
 
 #### Game UI
-(TODO) 
-Unity Canvas do the jobs nicely
+Unity Canvas do the jobs nicely.
 
-(TODO) 
 I avoid Unity Event and its messaging system since it's slower than manually binding a native C# event.
-( Even though it's less convenient to setup )
 
 #### Loading Screen
-(load scene async make it possible)
+This make possible by loading scene asynchronously.
 
 ![loading screen](/dg-loading-screen.png)
+
+The actual loading progress value in progress bar come from the actual
+percent that scene has loaded.
+
+This UI will appear once the scene starting to load and dissappear when
+scene successfully load.
+
+It need to survive from destroying its instance when changing the scene. \
+So, I Just tell unity to not destroy this instance on load.
+
+This UI do a singleton pattern to reuse it every time the game load
+a scene.
 
 ### Custom Editor
 Unity have a way to extend an editor to suit our project need. \
@@ -915,5 +968,11 @@ With this board, we can finish most of the necessary task. \
 You can view the board [here](https://trello.com/b/hVPRrx2p/dg-frame) .
 
 ## Conclusion
-(TODO) Shout out to my team, This project won't be possible without them.
+There are some crunch times during this project. \
+I got no sleep at the last day of the competition.
+
+But overalll, I have fun finishing this. \
+Thank you everyone for playing this game.
+
+Shout out to my team and all of our supporter, This project won't be possible without them.
 
