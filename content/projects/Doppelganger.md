@@ -1,6 +1,7 @@
 ---
 title: "Doppelganger"
 date: 2020-09-02T09:11:33+07:00
+math: true
 toc: true
 tags: [Unity, NSC2018, Custom Editor]
 weight: 12
@@ -641,19 +642,53 @@ The pressue plate switch need to do an overlap testing to ensure the
 reliable checking of something appear over this switch such as box and player.
 
 #### Moving Platform
-(todo) This is the small price I have to pay for using physics based platformer.
-(kinematic and gizmos here...)
+
+The moving logic is just a simple translation.
+
+![moving platform](/dg-platform-editor.png)
+
+First, it'll pick a target destination in which is represent by gizmos with a rhombus shape.
+
+Then it'll move along the direction by this expression where __v2__ is a target destination 
+and __v1__ is the position of the platform itself.
+
+$$direction = { \vec{v2} - \vec{v1} \over \lVert \vec{v2} - \vec{v1} \rVert } $$
+
+After it reach the current target destination, it'll just pick the next target to make it moving back and forth between targets.
+
+The red dot line is draw by gizmos to help visualize the path that platform will take.
+
+For the One way collision, I use a built in Unity physics engine.
 
 #### Collectable
-(photo here.., integrate with game progress (system))
+Player can pick the coin and photo in this game.
+
+At first, I want to make an acheivement, something like "Collect them all"
+or "Find all the clue (photo)" to explain why player need to pick these stuff.
+
+![coin and chest](/dg-coin-and-chest.png)
+
+Sadly, me and our artist can't make this in time. \
+The coin and photo can be found in the box.
+
+There are some coin that lay around in the level as well, but the issue is
+player cannot pick multiple coins at once.
+
+And again, I need to make a quick overlap testing (pre-allocate) to detect multiple coins.
+
+As for the photo, it need to integrate with a save file, then it's just a matter of properly load and restore the collectable progress. 
+
+![photo](/dg-collectable-photo.png)
 
 #### Game UI
 Unity Canvas do the jobs nicely.
 
-I avoid Unity Event and its messaging system since it's slower than manually binding a native C# event.
+Whenever I need to update a simple value to show player on the UI, I avoid polling by using an observer pattern.
+
+Also, I avoid Unity Event and its messaging system since it's slower than manually binding a native C# event.
 
 #### Loading Screen
-This make possible by loading scene asynchronously.
+This is possible by loading scene asynchronously.
 
 ![loading screen](/dg-loading-screen.png)
 
