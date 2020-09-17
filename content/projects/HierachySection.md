@@ -6,3 +6,7 @@ tags: [Unity, Custom Editor]
 draft: false
 ---
 
+[ image here ]
+
+The custom editor for Unity to highlight a game object that has a prefix __'---'__ in its name to help seperate stuff in the Hierachy panel.
+
