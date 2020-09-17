@@ -6,3 +6,7 @@ tags: [C++, Win32api, Tiling Window Manager]
 draft: false
 ---
 
+The custom taskbar design to use with __MyWinTiles__.
+
+[ It's origin and IPC here ]
+

@@ -6,3 +6,8 @@ tags: [Shell Script, Linux, rice]
 draft: false
 ---
 
+[ image ]
+
+My most popular(spelling) i3 wm rice. \
+Theming with a theme __Rin, Shelter__ in mind.
+
