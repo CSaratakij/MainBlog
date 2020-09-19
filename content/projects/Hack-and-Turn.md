@@ -6,9 +6,9 @@ tags: [Unity, Ludumdare, GameJam]
 draft: false
 ---
 
-[ image here ]
-
 Combine 2d hack and slash with a turn base strategy genre.
+
+![game](/hk-intro.png)
 
 One player got a turn base game mechanic and another player got a hack and slash game mechanic.
 
@@ -17,3 +17,11 @@ Only one player can play at a given turn.
 
 The entry for __Ludum Dara 41__.
 
+game: https://csaratakij.itch.io/hack-turn \
+gameplay: (todo) \
+respository: https://github.com/CSaratakij/RTS_TBS
+
+responsible: game system
+
+other member: \
+[person](mailto:) (artist)

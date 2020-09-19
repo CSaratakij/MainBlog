@@ -6,14 +6,19 @@ tags: [C++, Win32api, Tiling Window Manager]
 draft: false
 ---
 
-[ image here ]
+The tilling window manager for Windows that built on top of explorer shell.
 
-This is my productivity(spelling) tools.
-
-The tiling(spelling) window manager for Windows that built on top of explorer shell.
+![ image here ](/mywintiles-intro.png)
 
 Focus heavily on keyboard usage (vim-like) to prevent mouse usage which
 usually need in the typical stacking window manager (use mouse to minimize, maximize, focus and close window) .
 
-Improve the productivity(spelling) of any user that heavily use keyboard on their daily basis.
+Improve the productivity of any user that heavily use keyboard on their daily basis.
+
+release: https://github.com/CSaratakij/MyWinTiles/releases \
+showcase: https://youtu.be/pSBTtKgShQQ \
+explain: https://youtu.be/GHOhQw8JxgM \
+respository: https://github.com/CSaratakij/MyWinTiles
+
+responsible: all
 

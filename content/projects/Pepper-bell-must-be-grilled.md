@@ -6,10 +6,21 @@ weight: 11
 draft: false
 ---
 
-[image here]
-
 The 4 players party game. Each player must catch and throw each other to
 the roaster to gain the point within the time imit.
 
+![game](/pb-intro.png)
+
 The entry for __Ludum Dare 43__ .
 
+game: https://csaratakij.itch.io/pepper-bell-must-be-grilled \
+gameplay: https://www.youtube.com/watch?v=HQCoXmRc1NU \
+respository: https://github.com/CSaratakij/Ludumdare43
+
+responsible: game system
+
+other member: \
+[person](mailto:) (technical artist) \
+[person](mailto:) (artist) \
+[person](mailto:) (artist) \
+[person](mailto:) (artist)

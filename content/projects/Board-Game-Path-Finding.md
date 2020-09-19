@@ -6,8 +6,14 @@ tags: [Unity, Custom Editor]
 draft: false
 ---
 
-[ image here ]
-
 The little project that demonstrate how to implement a path finding in the
 board game.
+
+[ image here ]
+
+sample:  \
+gameplay: (todo) \
+respository:
+
+responsible: all
 

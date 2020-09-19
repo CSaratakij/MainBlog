@@ -6,7 +6,10 @@ tags: [C++, Win32api, Tiling Window Manager]
 draft: false
 ---
 
-The custom taskbar design to use with __MyWinTiles__.
+The custom taskbar design to use with __MyWinTiles__ to properly show the current workspace.
 
-[ It's origin and IPC here ]
+release: https://github.com/CSaratakij/MyWinBar/releases \
+repository: https://github.com/CSaratakij/MyWinBar
+
+responsible: all
 
