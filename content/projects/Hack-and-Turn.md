@@ -24,4 +24,5 @@ respository: https://github.com/CSaratakij/RTS_TBS
 responsible: game system
 
 other member: \
-[person](mailto:) (artist)
+[Nattareeya Kositvasutha ](mailto:shufier.nk@gmail.com) (artist)
+

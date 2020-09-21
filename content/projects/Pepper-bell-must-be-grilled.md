@@ -20,7 +20,8 @@ respository: https://github.com/CSaratakij/Ludumdare43
 responsible: game system
 
 other member: \
-[person](mailto:) (technical artist) \
-[person](mailto:) (artist) \
-[person](mailto:) (artist) \
-[person](mailto:) (artist)
+[Chusak Tan](mailto:chusak_saetan@hotmail.com) (technical artist) \
+[Jetniphat Likhitwatthanasakun](mailto:jetniphatoat@gmail.com) (artist) \
+[Pattarawut Jarupramote](mailto:jmpt.pattarawut@gmail.com) (artist) \
+[Panawat Khumgun](mailto:chikakito39@gmail.com) (artist)
+
