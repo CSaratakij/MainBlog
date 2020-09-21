@@ -6,14 +6,12 @@ tags: [Unity, Custom Editor]
 draft: false
 ---
 
-The little project that demonstrate how to implement a path finding in the
-board game.
+The little project that demonstrate how to implement a path finding in the board game.
 
-[ image here ]
+![sample](/bgp-intro.png)
 
-sample:  \
-gameplay: (todo) \
-respository:
+video: https://youtu.be/5aaWu5wvtR8 \
+respository: https://github.com/CSaratakij/BoardGamePathFinding
 
 responsible: all
 

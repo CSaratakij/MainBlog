@@ -15,9 +15,9 @@ usually need in the typical stacking window manager (use mouse to minimize, maxi
 
 Improve the productivity of any user that heavily use keyboard on their daily basis.
 
-release: https://github.com/CSaratakij/MyWinTiles/releases \
 showcase: https://youtu.be/pSBTtKgShQQ \
-explain: https://youtu.be/GHOhQw8JxgM \
+more explain: https://youtu.be/GHOhQw8JxgM \
+release: https://github.com/CSaratakij/MyWinTiles/releases \
 respository: https://github.com/CSaratakij/MyWinTiles
 
 responsible: all

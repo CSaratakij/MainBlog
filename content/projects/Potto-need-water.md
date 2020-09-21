@@ -9,13 +9,12 @@ draft: false
 Transmit water to our lovely __Potto__. \
 Make him growth even more bigger and stronger plant.
 
-(todo, more polish screenshot)
-![game](/pnw-intro.png)
+![game](/potto-intro.png)
 
 The entry for __Global Game Jam 2018__.
 
-game: https://globalgamejam.org/2018/games/potto-need-water \
-gameplay: (todo)
+jam site: https://globalgamejam.org/2018/games/potto-need-water \
+gameplay: https://youtu.be/qRjH79JLIxw
 
-responsible: (todo)
+responsible: AI of Potto, UI Logic
 

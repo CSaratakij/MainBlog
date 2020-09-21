@@ -15,10 +15,10 @@ One player got a turn base game mechanic and another player got a hack and slash
 Each player must fight until their hit point reach to zero. \
 Only one player can play at a given turn.
 
-The entry for __Ludum Dara 41__.
+The entry for __Ludum Dare 41__.
 
 game: https://csaratakij.itch.io/hack-turn \
-gameplay: (todo) \
+gameplay: https://youtu.be/myzIMMvDZCQ \
 respository: https://github.com/CSaratakij/RTS_TBS
 
 responsible: game system
