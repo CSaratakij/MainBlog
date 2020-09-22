@@ -1,7 +1,9 @@
 [submodule "themes/hugo-theme-codex"]
 	path = themes/hugo-theme-codex
-	url = https://github.com/jakewies/hugo-theme-codex.git
+	url = https://github.com/CSaratakij/hugo-theme-codex.git
+	branch = local-usage
 [submodule "public"]
 	path = public
 	url = https://github.com/CSaratakij/CSaratakij.github.io.git
 	branch = master
+
